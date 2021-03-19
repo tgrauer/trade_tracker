@@ -1,0 +1,51 @@
+
+// Compass
+@import "~compass-sass-mixins/lib/compass";
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700;900&display=swap');
+
+$green:#00ffce;
+
+html.index { 
+	background: url(../img/bg.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body{
+	background:#1D1D1D;
+	color:#ddd;
+	font-family: 'Roboto', sans-serif;
+}
+
+.hidetilloaded{display: none;}
+
+input.form-control{
+	height: 55px;
+	background:#333;
+	border:1px solid #111;
+	color:#ddd;
+
+	&:focus, &:active{
+		background:lighten(#333,5%);
+		outline:none !important;
+		@include box-shadow(none !important);
+		border:1px solid #111 !important;
+		color:#ddd;
+	}
+}
+
+.search_results{
+	a{
+		background:darken(#333,2%);
+		color:#ddd;
+		border-bottom: 1px solid #222;
+
+		&:hover{
+			background:darken(#333, 5%);
+			color:$green;
+		}
+	}
+}
