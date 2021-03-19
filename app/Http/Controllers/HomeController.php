@@ -24,6 +24,8 @@ class HomeController extends Controller
     public function index()
     {
         $data=[
+            'css_file'=>'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css',
+            'js_file'=>'datepicker.js',
             'page_type' => 'page'
         ];
         

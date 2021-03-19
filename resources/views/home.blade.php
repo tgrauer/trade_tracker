@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="form-group mb-0">
-                    <input type="text" class="form-control datepicker" name="search" placeholder="Search by Ticker or Company Name" autocomplete="off">
+                    <input type="text" class="form-control datepicker" name="date" required placeholder="Add Date" autocomplete="off">
                 </div>
             </form>
             <div class="alert alert-danger hidetilloaded">No Results Found</div>

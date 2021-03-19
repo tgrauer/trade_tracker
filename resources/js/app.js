@@ -50,4 +50,5 @@ var APP = {
 
 $(document).ready(function(){
 	APP.init();
+	
 });
