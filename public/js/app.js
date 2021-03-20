@@ -37395,6 +37395,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var APP = {
   init: function init() {
     $('.search').on('keyup', this.search);
+    $('.search_results').on('click', 'a', this.add_trade);
   },
   search: function search(e) {
     e.preventDefault();
@@ -37427,13 +37428,36 @@ var APP = {
           var results = '';
 
           for (var i = 0; i < response.length; i++) {
-            results += '<a class="list-group-item list-group-item-action" href="/company/' + response[i].symbol + '"><span class="company_name">' + response[i].symbol + ' | ' + response[i].securityName + '</span>' + ' (' + response[i].exchange + ')</a>';
+            results += '<a class="list-group-item list-group-item-action" data-ticker="' + response[i].symbol + '" href="#"><span class="company_name">' + response[i].symbol + ' | ' + response[i].securityName + '</span>' + ' (' + response[i].exchange + ')</a>';
           }
 
           $('.search_results').append(results).show();
         }
       });
     }
+  },
+  add_trade: function add_trade(e) {
+    e.preventDefault();
+    var ticker = $(this).data('ticker');
+    $('.search_results').empty().hide();
+    $('input.search').val('');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+    });
+    $.ajax({
+      url: '/add_trade/' + ticker,
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        _token: token,
+        ticker: ticker
+      },
+      success: function success(response) {
+        console.log(response);
+      }
+    });
   }
 };
 $(document).ready(function () {

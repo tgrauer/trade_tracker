@@ -31,4 +31,9 @@ class StockController extends Controller
         $search_term = $request->search_term;
     	return $this->api->sendRequest('search/'.$search_term);
     }
+
+    public function addTrade(Request $request)
+    {
+    	$ticker = $request->ticker;
+    }
 }

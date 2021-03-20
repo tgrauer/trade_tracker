@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/search/{search_term}', 'StockController@search');
+Route::post('/add_trade/{ticker}', 'StockController@addTrade');

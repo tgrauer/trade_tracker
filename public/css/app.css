@@ -10950,15 +10950,34 @@ html.index {
 
 body {
   background: #1D1D1D;
-  color: #ddd;
+  color: #ccc;
   font-family: "Roboto", sans-serif;
+}
+
+.btn.btn-primary {
+  background: none;
+  border: 2px solid #00ffce;
+  color: #ccc;
+  transition: all, ease, 0.25s;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 140px;
+}
+
+.btn.btn-primary:hover {
+  background: #00cca5;
+  border: 2px solid #00cca5;
+  color: #fff;
 }
 
 .hidetilloaded {
   display: none;
 }
 
-input.form-control {
+input.form-control,
+.form-control:disabled,
+.form-control[readonly] {
   height: 55px;
   background: #333;
   border: 1px solid #111;
@@ -10966,12 +10985,25 @@ input.form-control {
 }
 
 input.form-control:focus,
-input.form-control:active {
+input.form-control:active,
+.form-control:disabled:focus,
+.form-control:disabled:active,
+.form-control[readonly]:focus,
+.form-control[readonly]:active {
   background: #404040;
   outline: none !important;
   box-shadow: none !important;
   border: 1px solid #111 !important;
   color: #ddd;
+}
+
+form.search_ticker {
+  position: relative;
+}
+
+.search_results {
+  position: absolute;
+  width: 100%;
 }
 
 .search_results a {
@@ -11032,5 +11064,34 @@ th.dow {
 .datepicker table tr td.active[disabled] {
   background: #00cca5;
   color: #fff;
+}
+
+.day_trades {
+  background: #a6a6a6;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  font-size: 40px;
+  padding-top: 15px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.day_trades.traded {
+  background: #00cca5;
+  font-size: 30px;
+  padding-top: 25px;
+}
+
+.day_trades.traded:hover {
+  cursor: pointer;
+}
+
+h3.bb {
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 
