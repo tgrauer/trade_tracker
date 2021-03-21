@@ -5,7 +5,7 @@ var APP = {
 	init:function(){
 		$('.search').on('keyup', this.search);
 		$('.search_results').on('click', 'a', this.select_stock);
-		$('.search_ticker').on('submit', this.add_trade);
+		$('.add_trade').on('submit', this.add_trade);
 	},
 
 	search:function(e){
@@ -89,7 +89,8 @@ var APP = {
         	},
         	success:function(response){
         		$('.search_results').empty().hide();
-        		$('input.search').val('');
+        		// $('input.search').val('');
+        		$('.add_trade')[0].reset();
         	}
         })
 	}

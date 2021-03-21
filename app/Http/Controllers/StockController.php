@@ -16,18 +16,20 @@ class StockController extends Controller
     public function __construct(IEXCloud $api)
     {
     	$this->api = $api;
+    	$this->middleware('auth');
     }
 
     public function index()
     {
 
-    	// $sector_performance = $this->sector_performance();
-    	// $data = [
-    	// 	'news' => $news,
-     //        'sector_performance' => $sector_performance,
-     //    ];
-
-     //    return view('home')->with($data);
+    	$data=[
+            'css_file'=>'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css',
+            'js_file'=>'datepicker.js',
+            'trades' => $this->getTrades(),
+            'page_type' => 'page'
+        ];
+        
+        return view('home')->with($data);
     }
 
     public function search(Request $request)
@@ -59,5 +61,12 @@ class StockController extends Controller
     	);
 
     	return $post;
+    }
+
+    public function getTrades()
+    {
+    	$trades = DB::table('trades')->get()->where('user_id', Auth::id());
+
+    	return $trades;
     }
 }

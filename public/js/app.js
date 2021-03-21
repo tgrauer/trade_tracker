@@ -37396,7 +37396,7 @@ var APP = {
   init: function init() {
     $('.search').on('keyup', this.search);
     $('.search_results').on('click', 'a', this.select_stock);
-    $('.search_ticker').on('submit', this.add_trade);
+    $('.add_trade').on('submit', this.add_trade);
   },
   search: function search(e) {
     e.preventDefault();
@@ -37471,8 +37471,9 @@ var APP = {
         numb_shares: numb_shares
       },
       success: function success(response) {
-        $('.search_results').empty().hide();
-        $('input.search').val('');
+        $('.search_results').empty().hide(); // $('input.search').val('');
+
+        $('.add_trade')[0].reset();
       }
     });
   }
