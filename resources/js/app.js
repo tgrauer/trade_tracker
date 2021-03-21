@@ -4,7 +4,8 @@ require('./bootstrap');
 var APP = {
 	init:function(){
 		$('.search').on('keyup', this.search);
-		$('.search_results').on('click', 'a', this.add_trade);
+		$('.search_results').on('click', 'a', this.select_stock);
+		$('.search_ticker').on('submit', this.add_trade);
 	},
 
 	search:function(e){
@@ -12,7 +13,6 @@ var APP = {
 		var search_term = $(this).val();
 
 		if(!search_term.length){
-			console.log('should hide');
 			$('.search_results').empty().hide();
 			search_term='';
 		}
@@ -35,11 +35,11 @@ var APP = {
         			search_term:search_term
         		},
         		success:function(response){
-        			console.log(response);
+        			// console.log(response);
 
         			var results ='';
         			for(var i=0;i<response.length;i++){
-        				results+= '<a class="list-group-item list-group-item-action" data-ticker="'+response[i].symbol+'" href="#"><span class="company_name">'+response[i].symbol +' | ' + response[i].securityName+'</span>' + ' (' +response[i].exchange+')</a>';
+        				results+= '<a class="list-group-item list-group-item-action" data-ticker="'+response[i].symbol+'" href="#"><span class="ticker">'+response[i].symbol +'</span> - <span class="company_name">' + response[i].securityName+'</span>' + ' (' +response[i].exchange+')</a>';
         			}
 
         			$('.search_results').append(results).show();				
@@ -48,11 +48,24 @@ var APP = {
         }
 	},
 
-	add_trade:function(e){
+	select_stock:function(e){
 		e.preventDefault();
 		var ticker = $(this).data('ticker');
+		var company_name = $(this).find('.company_name').text();
+		$('.search').val(ticker +' - '+ company_name);
+		$('.ticker').val(ticker);
+		$('.company_name').val(company_name);
 		$('.search_results').empty().hide();
-		$('input.search').val('');
+	},
+
+	add_trade:function(e){
+		e.preventDefault();
+		var ticker = $('.ticker').val(),
+			company_name = $('.company_name').val(),
+			date_purchased = $('.date_purchased').val(),
+			purchase_price = $('.purchase_price').val(),
+			numb_shares = $('.numb_shares').val()
+		;
 
 		$.ajaxSetup({
             headers: {
@@ -60,17 +73,23 @@ var APP = {
             }
         });
 
+        var token = $('meta[name="csrf-token"]').attr('content');
+
         $.ajax({
-        	url:'/add_trade/'+ticker,
+        	url:'add_trade/'+ticker,
         	type:'POST',
         	dataType:'json',
         	data:{
         		_token:token,
-        		ticker:ticker
+        		ticker:ticker,
+        		company_name:company_name,
+        		date_purchased:date_purchased,
+        		purchase_price:purchase_price,
+        		numb_shares:numb_shares
         	},
         	success:function(response){
-        		console.log(response);
-        		
+        		$('.search_results').empty().hide();
+        		$('input.search').val('');
         	}
         })
 	}

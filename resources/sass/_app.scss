@@ -55,11 +55,19 @@ input.form-control, .form-control:disabled, .form-control[readonly] {
 	}
 }
 
+.input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text, .input-group:not(.has-validation) > .input-group-append:not(:last-child) > .btn, .input-group:not(.has-validation) > .input-group-append:not(:last-child) > .input-group-text, .input-group.has-validation > .input-group-append:nth-last-child(n+3) > .btn, .input-group.has-validation > .input-group-append:nth-last-child(n+3) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+    background:darken(#333,5%) !important;
+    border:1px solid #111;
+	color:#ddd;
+}
+
+
 form.search_ticker{position: relative;}
 
 .search_results{
 	position: absolute;
 	width:100%;
+	z-index: 99999;
 
 	a{
 		background:darken(#333,2%);
@@ -129,5 +137,27 @@ h3.bb{
 	padding-bottom: 5px;
 	margin-bottom: 20px;
 }
+
+ul.trade_history{
+	li{
+		.ticker{
+			font-weight: 700;
+			color:$green;
+		}
+
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
