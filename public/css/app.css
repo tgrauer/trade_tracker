@@ -11085,8 +11085,9 @@ th.dow {
   height: 100px;
   width: 100px;
   border-radius: 100px;
-  font-size: 30px;
-  padding-top: 25px;
+  font-size: 35px;
+  font-weight: 600;
+  padding-top: 22px;
   text-align: center;
   display: block;
   margin: 0 auto;
@@ -11095,8 +11096,9 @@ th.dow {
 
 .day_trades.traded {
   background: #00cca5;
-  font-size: 30px;
-  padding-top: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  padding-top: 29px;
 }
 
 .day_trades.traded:hover {

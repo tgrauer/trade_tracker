@@ -25,7 +25,7 @@ class StockController extends Controller
     	$data=[
             'css_file'=>'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css',
             'js_file'=>'datepicker.js',
-            'trades' => $this->getTrades(),
+            'trades' => $this->getTradesHistory(),
             'day_trades' => $this->getDayTrades(), 
             'page_type' => 'page'
         ];
@@ -64,27 +64,51 @@ class StockController extends Controller
     	return $post;
     }
 
-    public function getTrades()
+    public function getTradesHistory()
     {
-    	$trades = DB::table('trades')->get()->where('user_id', Auth::id());
+    	$trades = DB::table('trades')
+    		->where('user_id', Auth::id())
+    		->orderBy('created_at', 'desc')
+    		->get()
+    	;
 
     	return $trades;
     }
 
     public function getDayTrades()
     {
+    	
+    	$numb_days_back = 5;
+    	$now = Carbon::today();
+    	$begin_dt_range = $now->subWeekday($numb_days_back);
 
-    	$dt = Carbon::today();
-    	$begin_dt_range = $dt->subWeekday(5);
+    	$holidays = $this->checkMarketHolidays($begin_dt_range, $now);
+
+    	if($holidays){
+    		$numb_days_back++;
+    		$begin_dt_range = $now->subWeekday($numb_days_back);
+    	}
 
     	$day_trades = DB::table('trades')
 			->where('user_id', Auth::id())
 			->where('created_at', '>=', $begin_dt_range)
-			->orderBy('created_at', 'desc')
+			->orderBy('created_at', 'asc')
 			->get()
 		;
 
     	return $day_trades;
     }
 
+    private function checkMarketHolidays($begin_dt_range, $now)
+    {
+    	$holidays = [
+    		'2021/04/02', '2021/05/31', '2021/07/05', '2021/09/06', '2021/11/25', '2021/12/24', '2022/01/17', '2022/02/21', '2022/04/15', '2022/05/30', '2022/07/04', '2022/09/05', '2022/11/24', '2022/12/26', '2023/01/02', '2023/01/16', '2023/02/20', '2023/04/07', '2023/05/29', '2023/07/04', '2023/09/04', '2023/11/23', '2023/12/25'
+    	];
+
+    	foreach ($holidays as $h) {
+    	    if($h > $begin_dt_range && $h < $now){
+    	    	return true;
+    	    }
+    	}
+    }
 }

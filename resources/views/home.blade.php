@@ -49,14 +49,14 @@ echo '</pre>';
             
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-5">
             <h3 class="mb-3">Available Day Trades</h3>
 
-            <div class="row">
+            <div class="row d-flex justify-content-around">
 
                 @for($i=0;$i<3;$i++)
-                    <div class="col-sm-4">
-                        <div class="day_trades mt-3 ">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
+                    <div class="col-xs-4">
+                        <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
                     </div> 
                 @endfor                
             </div>
