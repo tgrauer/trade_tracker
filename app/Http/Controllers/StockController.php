@@ -26,6 +26,7 @@ class StockController extends Controller
             'css_file'=>'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css',
             'js_file'=>'datepicker.js',
             'trades' => $this->getTrades(),
+            'day_trades' => $this->getDayTrades(), 
             'page_type' => 'page'
         ];
         
@@ -69,4 +70,21 @@ class StockController extends Controller
 
     	return $trades;
     }
+
+    public function getDayTrades()
+    {
+
+    	$dt = Carbon::today();
+    	$begin_dt_range = $dt->subWeekday(5);
+
+    	$day_trades = DB::table('trades')
+			->where('user_id', Auth::id())
+			->where('created_at', '>=', $begin_dt_range)
+			->orderBy('created_at', 'desc')
+			->get()
+		;
+
+    	return $day_trades;
+    }
+
 }

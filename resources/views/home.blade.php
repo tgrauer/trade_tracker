@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+{{-- <?php  
+echo '<pre>';
+dd($day_trades);
+echo '</pre>';
+?> --}}
 @section('content')
 <div class="container bg">
     <div class="row">
@@ -49,17 +54,11 @@
 
             <div class="row">
 
-                <div class="col-sm-4">
-                    <div class="day_trades mt-3 traded">AAPL</div>
-                </div>
-                
-                <div class="col-sm-4">
-                    <div class="day_trades mt-3">2</div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="day_trades mt-3">3</div>
-                </div>
+                @for($i=0;$i<3;$i++)
+                    <div class="col-sm-4">
+                        <div class="day_trades mt-3 ">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
+                    </div> 
+                @endfor                
             </div>
         </div>
     </div>
