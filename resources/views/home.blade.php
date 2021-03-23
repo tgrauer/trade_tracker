@@ -50,7 +50,7 @@ echo '</pre>';
         </div>
 
         <div class="col-sm-6 mb-5">
-            <h3 class="mb-3">Available Day Trades</h3>
+            <h3 class="mb-3">Day Trades Used</h3>
 
             <div class="row d-flex justify-content-around">
 
