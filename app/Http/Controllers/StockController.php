@@ -25,7 +25,7 @@ class StockController extends Controller
     	$data=[
             'css_file'=>'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css',
             'js_file'=>'datepicker.js',
-            'trades' => $this->getTradesHistory(),
+            'trades' => $this->getTradeHistory(5),
             'day_trades' => $this->getDayTrades(), 
             'page_type' => 'page'
         ];
@@ -64,11 +64,12 @@ class StockController extends Controller
     	return $post;
     }
 
-    public function getTradesHistory()
+    public function getTradeHistory($limit=null)
     {
     	$trades = DB::table('trades')
     		->where('user_id', Auth::id())
     		->orderBy('created_at', 'desc')
+    		->take($limit)
     		->get()
     	;
 
@@ -81,12 +82,14 @@ class StockController extends Controller
     	$numb_days_back = 5;
     	$now = Carbon::today();
     	$today = Carbon::today();
+
     	$begin_dt_range = $now->subWeekday($numb_days_back);
+
     	$holidays = $this->checkMarketHolidays($begin_dt_range, $today);
 
     	if($holidays){
     		$numb_days_back++;
-    		$begin_dt_range = $now->subWeekday($numb_days_back);
+    		$begin_dt_range = $today->subWeekday($numb_days_back);
     	}
 
     	$day_trades = DB::table('trades')
@@ -110,5 +113,15 @@ class StockController extends Controller
     	    	return true;
     	    }
     	}
+    }
+
+
+    public function tradeHistory()
+    {
+    		$data=[
+    	        'trades' => $this->getTradeHistory(),
+    	        'page_type' => 'page'
+    	    ];
+    	return view('trades')->with($data);
     }
 }

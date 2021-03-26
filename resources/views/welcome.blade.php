@@ -1,47 +1,44 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+{{-- <?php  
+echo '<pre>';
+dd($day_trades);
+echo '</pre>';
+?> --}}
+@section('content')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    @include('shared.navbar')
 
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+    {{-- ///hero billboard --}}
+    <div class="jumbotron jumbotron-fluid hero">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h1 class="display-4 tagline">FREE Day Trade Tracker</h1>
+                    <p class="lead">Avoid getting flagged as a pattern day trader by logging your trades. If you use multiple brokerages to trade, we've got you covered. MyDayTradeTracker provides <b>support for multiple brokerages</b> at a time.</p>
+                    <a href="#" class="btn btn-warning btn-lg mt-3">Sign up or something</a>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="col-sm-5 cta">
+                    {{-- <div class="card">
+                        <form action="#" method="post" class="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control">
+                            </div>
+                        </form>
+                    </div> --}}
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 offset-8 mt-4">
+                <h4>Trading Tools</h4>
+            </div>
+        </div>
+    </div>
+
+   
+ @endsection

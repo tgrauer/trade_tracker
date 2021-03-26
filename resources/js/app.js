@@ -89,7 +89,6 @@ var APP = {
         	},
         	success:function(response){
         		$('.search_results').empty().hide();
-        		// $('input.search').val('');
         		$('.add_trade')[0].reset();
         	}
         })
@@ -98,5 +97,16 @@ var APP = {
 
 $(document).ready(function(){
 	APP.init();
+	document.getElementById("purchase_price").onblur =function (){    
 
+	    //number-format the user input
+	    this.value = parseFloat(this.value.replace(/,/g, ""))
+	                    .toFixed(2)
+	                    .toString()
+	                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+	    // //set the numeric value to a number input
+	    this.value = this.value.replace(/,/g, "")
+
+	}
 });

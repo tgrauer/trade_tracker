@@ -29,6 +29,6 @@ class HomeController extends Controller
             'page_type' => 'page'
         ];
         
-        return view('home')->with($data);
+        return view('trades')->with($data);
     }
 }

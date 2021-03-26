@@ -5,14 +5,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700;900&display=swap');
 
 $green:#00ffce;
+$yellow:#FFF07C; // F8E16C // bright yellow FAF33E
+$slate:#648381;
+$tan:#FFECD1;
 $dark_green: darken($green, 10%);
 
-html.index { 
-	background: url(../img/bg.jpg) no-repeat center center fixed; 
+// html.index { 
+// 	background: url(../img/hero_bg.jpg) no-repeat center center fixed; 
+// 	-webkit-background-size: cover;
+// 	-moz-background-size: cover;
+// 	-o-background-size: cover;
+// 	background-size: cover;
+
+// 	body{
+// 		background:none !important;
+// 	}
+// }
+
+.jumbotron{
+	background: url(../img/hero_bg.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	min-height: 500px;
+}
+
+nav.mb-1.navbar.navbar-expand-lg.navbar-dark.info-color{
+	background: #1D1D1D;
 }
 
 body{
@@ -21,14 +41,27 @@ body{
 	font-family: 'Roboto', sans-serif;
 }
 
+.hero{
+
+	h1.tagline{
+		font-size: 55px;
+		font-weight: 300;
+		color:#fff;
+		span{font-weight: 900;}
+	}
+}
+
+.btn{font-weight: 600;}
+
 .btn.btn-primary{
 	background:none;
-	border:2px solid $green;
+	border:1px solid $green;
 	color:#ccc;
 	@include transition(all, ease, 0.25s);
-	text-transform: uppercase;
+	// text-transform: uppercase;
 	font-weight: 600;
 	font-size: 14px;
+	padding: 10px;
 	min-width: 140px;
 
 	&:hover{
@@ -40,9 +73,13 @@ body{
 
 .hidetilloaded{display: none;}
 
+.card-body{
+	background:lighten(#111,3%);
+}
+
 input.form-control, .form-control:disabled, .form-control[readonly] {
 	height: 55px;
-	background:#333;
+	background:darken(#333,2%);
 	border:1px solid #111;
 	color:#ddd;
 
@@ -96,7 +133,7 @@ th.dow{
     color:#fff;
 }
 
-.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-bottom {
+.datepicker.datepicker-dropdown.dropdown-menu{
     background: #000;
     color:#ddd;
 }
@@ -108,7 +145,9 @@ th.dow{
 
 .datepicker table tr td.active.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active.disabled:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active:active, .datepicker table tr td.active:hover, .datepicker table tr td.active:hover.active, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active:hover:active, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active[disabled] {
     background:$dark_green;
+    border:1px solid $dark_green;
 	color:#fff;
+	@include border-radius(3px);
 }
 
 // .datepicker table tr td.today, .datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover, .datepicker table tr td.today:hover{
@@ -151,6 +190,34 @@ ul.trade_history{
 		}
 
 
+	}
+}
+
+table.table{
+	thead{
+		th{
+			background:$dark_green;
+			color:#fff;
+			border: none;
+			font-weight:700;
+		}
+	}
+
+	tbody{
+		tr{
+			border-bottom: 1px solid #555;
+			color:#ddd;
+			background:#222;
+
+			&:nth-child(odd){
+				background:#333;
+			}
+
+			&:last-of-type{border-bottom: none ;}
+			td{border:none;}
+
+			&:hover{background: darken(#333,3%);}
+		}
 	}
 }
 
