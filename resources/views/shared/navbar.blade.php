@@ -1,9 +1,9 @@
 
     <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color fixed-top pt-1">
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color fixed-top pt-0">
         <div class="container">
             {{-- <a class="navbar-brand" href="#"><img src="./images/logo.png" alt=""></a> --}}
-            <a class="navbar-brand" href="#"><img src="images/logo.png" width="50" height="40" class="d-inline-block align-center" alt="">Top End Trading</a>
+            <a class="navbar-brand" href="#"><img src="images/logo.png" width="250" height="55" class="d-inline-block align-center" alt=""></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
             aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">

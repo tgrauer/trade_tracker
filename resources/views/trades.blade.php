@@ -22,11 +22,14 @@ echo '</pre>';
     		        <thead>
     		            <tr>
     		            	<th>Date</th>
+    		            	<th>Type</th>
     		                <th>Ticker</th>
     		                <th>Company</th>
-    		                <th># of Shares</th>
-    		                <th>Purchase Price</th>
-    		                <th>Current Price</th>
+    		                <th>Shares</th>
+    		                <th>Price</th>
+    		                <th>Option Type</th>
+    		                <th>Strike Price</th>
+    		                <th>Expiration</th>
     		            </tr>
     		        </thead>
 
@@ -34,17 +37,23 @@ echo '</pre>';
     		            @foreach($trades as $trade)
     		                <tr>
     		                	@php
-    		                	$trade_date = substr($trade->created_at, 0, 10);
-    		                	$trade_date = \Carbon\Carbon::parse($trade->created_at)->toFormattedDateString();
-
+    		                		$trade_date = \Carbon\Carbon::parse($trade->created_at)->toFormattedDateString();
+    		                	if(!empty($trade->expiration_date)){
+    		                		$expiration_date = \Carbon\Carbon::parse($trade->expiration_date)->toFormattedDateString();
+    		                	}else{
+    		                		$expiration_date='';
+    		                	}
     		                	@endphp
 
     		                	<td>{{$trade_date}}</td>
+    		                	<td>{{$trade->trade_type}}</td>
     		                    <td>{{$trade->ticker}}</td>
     		                    <td>{{$trade->company_name}}</td>
     		                    <td>{{$trade->numb_shares}}</td>
     		                    <td>{{$trade->purchase_price}}</td>
-    		                    <td>$0.00</td>
+    		                    <td>{{$trade->option_type}}</td>
+    		                    <td>{{$trade->strike_price}}</td>
+    		                    <td>{{ $expiration_date ?? '' }}</td>
     		                </tr>
     		            @endforeach
     		        </tbody>

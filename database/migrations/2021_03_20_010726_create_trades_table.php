@@ -18,9 +18,12 @@ class CreateTradesTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('ticker');
             $table->string('company_name');
-            $table->smallInteger('current_price');
-            $table->smallInteger('purchase_price');
-            $table->smallInteger('numb_shares');
+            $table->string('trade_type');
+            $table->decimal('purchase_price', 8, 2)->nullable();
+            $table->smallInteger('numb_shares')->nullable();
+            $table->string('option_type')->nullable();
+            $table->decimal('strike_price', 8, 2)->nullable();
+            $table->timestamp('expiration_date')->nullable();
             $table->timestamp('created_at');
         });
 

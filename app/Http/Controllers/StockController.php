@@ -41,25 +41,33 @@ class StockController extends Controller
 
     public function addTrade(Request $request)
     {
-    	$ticker = $request->ticker;
-    	$company_name = $request->company_name;
-    	$current_price = '100';
-    	$purchase_price = $request->purchase_price;
-    	$numb_shares = $request->numb_shares;
-    	$created_at = $date = Carbon::createFromDate($request->date_purchased);
+
+    	$created_at = Carbon::createFromDate($request->date_purchased);
+    	if(!empty($request->expiration_date)){
+    		$expiration_date = Carbon::createFromDate($request->expiration_date);
+    	}
+
+    	$post_array =[
+    		'user_id' => Auth::id(),
+    		'ticker' => $request->ticker, 
+    		'company_name' => $request->company_name,
+    		'purchase_price' => $request->purchase_price,
+    		'created_at' => $created_at
+    	];    	
+
+    	// if shares
+    	if($request->trade_type == 'shares'){
+    		$post_array['trade_type'] = 'shares';
+    		$post_array['numb_shares'] = $request->numb_shares;
+    	}else if($request->trade_type == 'options'){
+    		$post_array['trade_type'] = 'options';
+    		$post_array['option_type'] = $request->option_type;
+    		$post_array['expiration_date'] = $expiration_date;
+    		$post_array['strike_price'] = $request->strike_price;
+    	}
 
     	// insert trade into db
-    	$post = DB::table('trades')->insert(
-    	    [
-    	    	'user_id' => Auth::id(),
-    	    	'ticker' => $ticker, 
-    	    	'company_name' => $company_name,
-    	    	'current_price' => $current_price,
-    	    	'purchase_price' => $purchase_price,
-    	    	'numb_shares' => $numb_shares,
-    	    	'created_at' => $created_at
-    		]
-    	);
+    	$post = DB::table('trades')->insert($post_array);
 
     	return $post;
     }

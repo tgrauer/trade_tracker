@@ -6,6 +6,7 @@ var APP = {
 		$('.search').on('keyup', this.search);
 		$('.search_results').on('click', 'a', this.select_stock);
 		$('.add_trade').on('submit', this.add_trade);
+		$('.trade_type').on('click', this.show_trade_type_form);
 	},
 
 	search:function(e){
@@ -63,9 +64,18 @@ var APP = {
 		var ticker = $('.ticker').val(),
 			company_name = $('.company_name').val(),
 			date_purchased = $('.date_purchased').val(),
-			purchase_price = $('.purchase_price').val(),
-			numb_shares = $('.numb_shares').val()
+			trade_type = $('.trade_type:checked').val(),
+			purchase_price = $('.purchase_price').val()
 		;
+
+		if(trade_type=='shares'){
+			var numb_shares = $('.numb_shares').val();
+		}else{
+			var option_type = $('.option_type:checked').val(),
+				expiration_date = $('.expiration_date').val(),
+				strike_price = $('.strike_price').val()
+			;
+		}
 
 		$.ajaxSetup({
             headers: {
@@ -83,15 +93,24 @@ var APP = {
         		_token:token,
         		ticker:ticker,
         		company_name:company_name,
+        		trade_type:trade_type,
         		date_purchased:date_purchased,
         		purchase_price:purchase_price,
-        		numb_shares:numb_shares
+        		numb_shares:numb_shares,
+        		option_type:option_type,
+        		expiration_date:expiration_date,
+        		strike_price:strike_price
         	},
         	success:function(response){
         		$('.search_results').empty().hide();
         		$('.add_trade')[0].reset();
         	}
         })
+	},
+
+	show_trade_type_form:function(){
+		$('.trade_type_form').hide();
+		$('.'+$(this).val()).show();
 	}
 }
 

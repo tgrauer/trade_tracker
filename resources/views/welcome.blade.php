@@ -72,7 +72,7 @@ echo '</pre>';
         <div class="row">
             <div class="col-sm-8 mt-4">
                 <h4 class="mb-4">What is Pattern Day Trader?</h4> 
-                <p>A pattern day trader (PDT) is a regulatory designation set for the traders/investors who, over the course of five days, execute four or more trades using a margin account.</p>   
+                <p>A PDT or pattern day trader is a regulatory designation set for the traders/investors who execute four or more trades in the span of five days, while using a margin account.</p>   
 
                 <p>Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Aperiam eum accusantium minima consequuntur sequi eaque nesciunt rerum est nemo soluta ipsam recusandae corrupti incidunt quis rem explicabo quo, ducimus numquam!</p>
 

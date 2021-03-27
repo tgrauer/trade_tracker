@@ -40,28 +40,68 @@ echo '</pre>';
                     <h4 class="mb-3">Optional Fields</h4>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="trade_type" id="shares" value="shares" checked>
+                        <input class="form-check-input trade_type" type="radio" name="trade_type" id="shares" value="shares">
                         <label class="form-check-label" for="shares">Shares</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="trade_type" id="options" value="options">
+                        <input class="form-check-input trade_type" type="radio" name="trade_type" id="options" value="options">
                         <label class="form-check-label" for="options">Options</label>
                     </div>
 
-                    <div class="form-group mt-3">
-                        <label class="mb-0">Purchase Price</label>
-                        <div class="input-group mt-0">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">$</span>
-                              </div>
-                            <input type="text" class="form-control purchase_price" id="purchase_price" name="purchase_price" placeholder="Optional" autocomplete="off">
+                    <div class="shares hidetilloaded trade_type_form">
+                        <div class="form-group mt-3">
+                            <label class="mb-0">Purchase Price</label>
+                            <div class="input-group mt-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                  </div>
+                                <input type="text" class="form-control purchase_price" id="purchase_price" name="purchase_price" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="mb-0"># of shares</label>
+                            <input type="number" class="form-control numb_shares" name="numb_shares"  placeholder="Optional" autocomplete="off">
                         </div>
                     </div>
 
-                    <div class="form-group mt-3">
-                        <label class="mb-0"># of shares</label>
-                        <input type="number" class="form-control numb_shares" name="numb_shares"  placeholder="Optional" autocomplete="off">
+                    <div class="options hidetilloaded trade_type_form">
+
+                        <div class="form-check form-check-inline mt-4">
+                            <input class="form-check-input option_type" type="radio" name="option_type" id="call" value="call">
+                            <label class="form-check-label" for="call">Call</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input option_type" type="radio" name="option_type" id="put" value="put">
+                            <label class="form-check-label" for="put">Put</label>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="mb-0">Purchase Price</label>
+                            <div class="input-group mt-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                  </div>
+                                <input type="text" class="form-control purchase_price" id="purchase_price" name="purchase_price" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="mb-0">Strike Price</label>
+                            <div class="input-group mt-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                  </div>
+                                <input type="text" class="form-control strike_price" id="strike_price" name="purchase_price" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="mb-0">Expiration</label>
+                            <input type="text" class="form-control datepicker expiration_date" name="expiration_date" readonly required autocomplete="off">
+                        </div>
                     </div>
 
                     <button class="btn btn-primary btn-lg mt-3 float-right">Add Trade</button>
@@ -89,22 +129,21 @@ echo '</pre>';
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Date</th>
                             <th>Ticker</th>
-                            {{-- <th>Company</th> --}}
-                            <th># of Shares</th>
-                            <th>Purchase Price</th>
-                            <th>Current Price</th>
+                            <th>Trade Type</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($trades as $trade)
+                            @php
+                                $trade_date = \Carbon\Carbon::parse($trade->created_at)->toFormattedDateString();
+                            @endphp
                             <tr>
+                                <td>{{$trade_date}}</td>
                                 <td>{{$trade->ticker}}</td>
-                                {{-- <td>{{$trade->company_name}}</td> --}}
-                                <td>{{$trade->numb_shares}}</td>
-                                <td>{{$trade->purchase_price}}</td>
-                                <td>$0.00</td>
+                                <td>{{$trade->trade_type}}</td>
                             </tr>
                         @endforeach
                     </tbody>
