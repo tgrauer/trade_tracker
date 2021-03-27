@@ -9,7 +9,7 @@ echo '</pre>';
 <div class="container bg">
     <div class="row pt-4">
         <div class="col-sm-3 offset-9">
-            <a href="{{ url('/home') }}" class="btn btn-outline-danger float-right">Log Out</a>
+            <a href="{{ url('/logout') }}" class="btn btn-outline-danger float-right">Log Out</a>
         </div>
     </div>
 
@@ -35,12 +35,28 @@ echo '</pre>';
                         <input type="text" class="form-control datepicker date_purchased" name="date_purchased" readonly required autocomplete="off">
                     </div>
 
-                    <label class="mb-0">Purchase Price</label>
-                    <div class="input-group mt-0">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                          </div>
-                        <input type="text" class="form-control purchase_price" id="purchase_price" name="purchase_price" placeholder="Optional" autocomplete="off">
+                    <hr/>
+
+                    <h4 class="mb-3">Optional Fields</h4>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="trade_type" id="shares" value="shares" checked>
+                        <label class="form-check-label" for="shares">Shares</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="trade_type" id="options" value="options">
+                        <label class="form-check-label" for="options">Options</label>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label class="mb-0">Purchase Price</label>
+                        <div class="input-group mt-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                              </div>
+                            <input type="text" class="form-control purchase_price" id="purchase_price" name="purchase_price" placeholder="Optional" autocomplete="off">
+                        </div>
                     </div>
 
                     <div class="form-group mt-3">
@@ -68,7 +84,7 @@ echo '</pre>';
                 @endfor                
             </div>
 
-            <h3 class="bb mt-5">Trade History</h3>
+            <h3 class="mt-4">Trade History</h3>
             <div class="table-responsive trade_history mt-4">
                 <table class="table table-striped">
                     <thead>

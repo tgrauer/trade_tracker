@@ -10943,30 +10943,95 @@ a.text-dark:focus {
   }
 }
 
+body {
+  background: #1D1D1D;
+  color: #ccc;
+  font-family: "Roboto", sans-serif;
+  padding-bottom: 150px;
+}
+
+a {
+  color: #ccc;
+}
+
+a:hover {
+  color: #F8E16C;
+  text-decoration: none;
+}
+
+a.btn-link {
+  color: #F8E16C;
+}
+
+a.btn-link:hover {
+  color: #f5d532;
+  text-decoration: none;
+}
+
+a.btn-link:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+h3 {
+  color: #F8E16C;
+  font-weight: 300;
+}
+
+h4 {
+  color: #00ffce;
+}
+
 .jumbotron {
-  background: url(/images/hero_bg.jpg?21fd58dfabda0634bdd8609a7bc5b235) no-repeat center center fixed;
+  background: url(/images/hero_bg.jpg?7630072bbf1f10b70348003b1a82f937) no-repeat top center fixed;
   background-size: cover;
-  min-height: 500px;
+  min-height: 580px;
 }
 
 nav.mb-1.navbar.navbar-expand-lg.navbar-dark.info-color {
   background: #1D1D1D;
 }
 
-body {
-  background: #1D1D1D;
-  color: #ccc;
-  font-family: "Roboto", sans-serif;
+.navbar-brand {
+  padding-top: 0;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-left: 1.5em;
 }
 
 .hero h1.tagline {
   font-size: 55px;
   font-weight: 300;
   color: #fff;
+  margin-bottom: 20px;
 }
 
 .hero h1.tagline span {
-  font-weight: 900;
+  font-weight: 700;
+}
+
+.hero p {
+  text-shadow: 0 2px 3px #333;
+}
+
+.hero .btn.btn-secondary {
+  color: #222;
+  background: #F8E16C;
+  padding: 10px 20px;
+  border: none;
+}
+
+.hero .btn.btn-secondary:hover {
+  background: #f6d945;
+}
+
+.hero .btn.btn-secondary:active,
+.hero .btn.btn-secondary:focus {
+  color: #222;
+  box-shadow: none !important;
+  background: #f2cd0c;
 }
 
 .btn {
@@ -10984,18 +11049,43 @@ body {
   min-width: 140px;
 }
 
-.btn.btn-primary:hover {
-  background: #00cca5;
-  border: 2px solid #00cca5;
-  color: #fff;
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary:focus {
+  background: #00cca5 !important;
+  border: 2px solid #00cca5 !important;
+  color: #fff !important;
+  box-shadow: none !important;
 }
 
 .hidetilloaded {
   display: none;
 }
 
+.card {
+  border: 1px solid #3f3f3f;
+}
+
+.card-header {
+  background: #000;
+}
+
 .card-body {
-  background: #191919;
+  background: #171717;
+  overflow: auto;
+}
+
+.cta {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.cta form.form {
+  background: none;
+}
+
+.cta .btn {
+  margin: 0 auto;
+  display: block;
 }
 
 input.form-control,
@@ -11014,7 +11104,6 @@ input.form-control:active,
 .form-control[readonly]:focus,
 .form-control[readonly]:active {
   background: #404040;
-  outline: none !important;
   box-shadow: none !important;
   border: 1px solid #111 !important;
   color: #ddd;
@@ -11033,8 +11122,21 @@ input.form-control:active,
   color: #ddd;
 }
 
+.tradingview-widget-container {
+  top: 52px;
+}
+
+.tradingview-widget-copyright {
+  display: none;
+}
+
 form.add_trade {
   position: relative;
+}
+
+form.add_trade hr {
+  margin: 25px 0;
+  border-top: 1px solid #333;
 }
 
 .search_results {
