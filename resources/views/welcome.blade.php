@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 {{-- <?php  
 echo '<pre>';
@@ -83,18 +83,20 @@ echo '</pre>';
                 <h4 class="mb-4">Trading Tools</h4>
 
                 <ul class="pl-3">
-                    <li class="pb-2"><a href="https://wallstreetodds.com/">wallstreetodds.com</a></li>
-                    <li class="pb-2"><a href="https://www.highshortinterest.com/">highshortinterest.com</a></li>
-                    <li class="pb-2"><a href="https://www.barchart.com/options/unusual-activity/stocks?orderBy=volume&orderDir=desc&page=1">barchart.com/options/unusual-activity</a></li>
-                    <li class="pb-2"><a href="https://unusualwhales.com/">unusualwhales.com</a></li>
-                    <li class="pb-2"><a href="https://m.holdingschannel.com/">m.holdingschannel.com</a></li>
-                    <li class="pb-2"><a href="https://www.etf.com/">etf.com</a></li>
-                    <li class="pb-2"><a href="https://cathiesark.com/arkg-holdings-of-abbv">cathiesark.com</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://wallstreetodds.com/">wallstreetodds.com</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://www.highshortinterest.com/">highshortinterest.com</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://www.barchart.com/options/unusual-activity/stocks?orderBy=volume&orderDir=desc&page=1">barchart.com/options/unusual-activity</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://unusualwhales.com/">unusualwhales.com</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://holdingschannel.com/">holdingschannel.com</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://www.etf.com/">etf.com</a></li>
+                    <li class="pb-2"><a target="_blank" href="https://cathiesark.com/">cathiesark.com</a></li>
 
                 </ul>
             </div>
         </div>
     </div>
+
+    @include('shared.footer')
 
    
  @endsection

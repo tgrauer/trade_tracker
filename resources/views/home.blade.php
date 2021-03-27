@@ -13,7 +13,7 @@ echo '</pre>';
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-sm-6">
             <div class="card-body">
                 <form action="#" method="POST" class="form add_trade">
@@ -154,17 +154,8 @@ echo '</pre>';
             <a href="{{ url('/trades') }}" class="btn btn-primary mt-3 float-right">View Trade History</a>
         </div>
     </div>
-
-    {{-- <div class="row">
-        <div class="col-sm-6 offset-6">
-            <h3 class="bb">Trade History</h3>
-            <ul class="trade_history pl-3">
-
-                @foreach($trades as $trade)
-                    <li class="mb-2"><span class="ticker">{{$trade->ticker}}</span> - <span class="company_name">{{$trade->company_name}}</span> <span class="numb_shares">{{$trade->numb_shares}} </span> - <span class="purchase_price">${{$trade->purchase_price}}</span></li>
-                @endforeach
-            </ul>
-        </div>
-    </div> --}}
 </div>
+
+@include('shared.footer')
+
 @endsection

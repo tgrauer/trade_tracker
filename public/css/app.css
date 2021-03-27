@@ -10947,7 +10947,11 @@ body {
   background: #1D1D1D;
   color: #ccc;
   font-family: "Roboto", sans-serif;
-  padding-bottom: 150px;
+}
+
+body.page {
+  background: url(/images/candle_bg.jpg?842733d627653d7656e3d9ef387f623b) no-repeat top center fixed;
+  background-size: cover;
 }
 
 .hidetilloaded {
@@ -11274,5 +11278,13 @@ table.table tbody tr td {
 
 table.table tbody tr:hover {
   background: #2b2b2b;
+}
+
+.footer {
+  padding-top: 100px;
+}
+
+.footer .copyright {
+  color: #888;
 }
 
