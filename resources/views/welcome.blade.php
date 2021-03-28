@@ -76,7 +76,16 @@ echo '</pre>';
 
                 <p>Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Aperiam eum accusantium minima consequuntur sequi eaque nesciunt rerum est nemo soluta ipsam recusandae corrupti incidunt quis rem explicabo quo, ducimus numquam!</p>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, aliquam mollitia repellendus a cumque possimus et quas quae, cum reiciendis corrupti quibusdam? Accusamus aliquid cumque velit officiis, ipsa corporis ullam!</p>
+                <h4 class="mb-4">How to remove a Pattern Day Trader status?</h4>
+                <ul class="pl-2">
+                    <li>Deposit funds to increase the account’s equity up to the SEC required minimum of $25,000.</li>
+                    <li>Wait for 90 days before initiating any new position.</li>
+                    <li>Ask your broker for a PDT account reset. Some brokers may honor this request as a once in a lifetime type deal, while others will do nothing to remove the status. Its best to avoid being flagged all together.</li>
+                </ul>
+
+                <hr/>
+
+                <p>The Pattern Day Trading rule regulates the use of margin and is defined only for margin accounts. Cash accounts, by definition, do not borrow on margin, so day trading is subject to separate rules regarding Cash Accounts. Cash account holders may still engage in certain day trades, as long as the activity does not result in free riding, which is the sale of securities bought with unsettled funds. An instance of free-riding will cause a cash account to be restricted for 90 days to purchasing securities with cash up front. </p>
             </div>
 
             <div class="col-sm-4 mt-4">

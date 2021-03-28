@@ -10950,7 +10950,7 @@ body {
 }
 
 body.page {
-  background: url(/images/candle_bg.jpg?842733d627653d7656e3d9ef387f623b) no-repeat top center fixed;
+  background: url(/images/candle_bg.jpg?064ea6e3e235ce2d51e6fa0cb1803d9d) no-repeat top center fixed;
   background-size: cover;
 }
 
@@ -10963,16 +10963,24 @@ a {
 }
 
 a:hover {
-  color: #F8E16C;
+  color: #8479e9;
   text-decoration: none;
 }
 
+a.login_link {
+  color: #00ffce !important;
+}
+
+a.login_link:hover {
+  color: #00cca5 !important;
+}
+
 a.btn-link {
-  color: #F8E16C;
+  color: #8479e9;
 }
 
 a.btn-link:hover {
-  color: #f5d532;
+  color: #7063e5;
   text-decoration: none;
 }
 
@@ -10983,8 +10991,8 @@ a.btn-link:active {
 }
 
 h3 {
-  color: #F8E16C;
-  font-weight: 300;
+  color: #8479e9;
+  font-weight: 700;
 }
 
 h4 {
@@ -11009,6 +11017,10 @@ nav.mb-1.navbar.navbar-expand-lg.navbar-dark.info-color {
   padding-left: 1.5em;
 }
 
+.navbar-nav a {
+  font-weight: 700;
+}
+
 .hero h1.tagline {
   font-size: 55px;
   font-weight: 300;
@@ -11025,31 +11037,41 @@ nav.mb-1.navbar.navbar-expand-lg.navbar-dark.info-color {
 }
 
 .hero .btn.btn-secondary {
-  color: #222;
-  background: #F8E16C;
+  color: #fff;
+  background: #8479e9;
   padding: 10px 20px;
   border: none;
 }
 
 .hero .btn.btn-secondary:hover {
-  background: #f6d945;
+  background: #786ce6;
 }
 
 .hero .btn.btn-secondary:active,
 .hero .btn.btn-secondary:focus {
-  color: #222;
+  color: #fff;
   box-shadow: none !important;
-  background: #f2cd0c;
+  background: #7063e5;
 }
 
 .btn {
   font-weight: 600;
 }
 
+a.btn.btn-outline-danger {
+  border: 1px solid #e74c3c;
+  color: #ddd !important;
+}
+
+a.btn.btn-outline-danger:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
 .btn.btn-primary {
   background: none;
   border: 1px solid #00ffce;
-  color: #ccc;
+  color: #00ffce;
   transition: all, ease, 0.25s;
   font-weight: 600;
   font-size: 14px;
@@ -11278,6 +11300,38 @@ table.table tbody tr td {
 
 table.table tbody tr:hover {
   background: #2b2b2b;
+}
+
+.delete_trade {
+  color: #e3342f;
+}
+
+.delete_trade:hover {
+  color: #e9605c;
+}
+
+.modal-header {
+  color: #00ffce;
+  background: #282828;
+  border-bottom: 1px solid #555;
+}
+
+.modal-content {
+  background: #303030;
+}
+
+.modal-title {
+  color: #8479e9;
+}
+
+.modal-body p {
+  font-size: 18px;
+  padding-bottom: 0;
+}
+
+.modal-footer {
+  background: #282828;
+  border-top: 1px solid #555;
 }
 
 .footer {

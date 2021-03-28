@@ -23,4 +23,6 @@ Route::post('/search/{search_term}', 'StockController@search');
 Route::post('/add_trade/{ticker}', 'StockController@addTrade');
 Route::get('/trades', 'StockController@tradeHistory');
 
+Route::get('/settings', 'SettingsController@index');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

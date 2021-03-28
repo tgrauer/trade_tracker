@@ -7,6 +7,8 @@ var APP = {
 		$('.search_results').on('click', 'a', this.select_stock);
 		$('.add_trade').on('submit', this.add_trade);
 		$('.trade_type').on('click', this.show_trade_type_form);
+		$('.edit_trade').on('click', this.edit_trade);
+		$('.delete_trade').on('click', this.delete_trade);
 	},
 
 	search:function(e){
@@ -111,6 +113,15 @@ var APP = {
 	show_trade_type_form:function(){
 		$('.trade_type_form').hide();
 		$('.'+$(this).val()).show();
+	},
+
+	delete_trade:function(){
+		var trade_id = $(this).parent().parent().data('trade_id');
+		var trade_ticker = $('.trade_history_table').find('[data-trade_id='+trade_id+']').find('.trade_ticker').text();
+		var trade_company_name = $('.trade_history_table').find('[data-trade_id='+trade_id+']').find('.trade_company_name').text();
+
+		$('#delete_trade_modal').find('.modal-body p span').text(trade_ticker +' '+ trade_company_name);
+		console.log(trade_ticker +' '+ trade_company_name);
 	}
 }
 

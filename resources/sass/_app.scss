@@ -5,10 +5,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700;900&display=swap');
 
 $green:#00ffce;
-$yellow:#F8E16C; // F8E16C // bright yellow FAF33E
+
 $slate:#648381;
 $tan:#FFECD1;
 $dark_green: darken($green, 10%);
+$red:#e74c3c;
+$purple:lighten(#7063e5,5%);
 
 body{
 	background:#1D1D1D;
@@ -30,15 +32,20 @@ body{
 a{
 	color:#ccc;
 	&:hover{
-		color:$yellow;
+		color:$purple;
 		text-decoration: none;
+	}
+
+	&.login_link{
+		color:$green !important;
+		&:hover{color:$dark_green !important;}
 	}
 }
 
 a.btn-link{
-	color:$yellow;
+	color:$purple;
 	&:hover{
-		color:darken($yellow,12%);
+		color:darken($purple,5%);
 		text-decoration: none;
 	}
 
@@ -46,8 +53,8 @@ a.btn-link{
 }
 
 h3{
-	color:$yellow;
-	font-weight: 300;
+	color:$purple;
+	font-weight: 700;
 }
 
 h4{
@@ -73,6 +80,12 @@ nav.mb-1.navbar.navbar-expand-lg.navbar-dark.info-color{
 	padding-left: 1.5em;
 }
 
+.navbar-nav{
+	a{
+		font-weight: 700;
+	}
+}
+
 .hero{
 
 	h1.tagline{
@@ -88,31 +101,41 @@ nav.mb-1.navbar.navbar-expand-lg.navbar-dark.info-color{
 	}
 
 	.btn.btn-secondary{
-		color:#222;
-		background:$yellow;
+		color:#fff;
+		background:$purple;
 		padding: 10px 20px;
 		border:none;
 
 		&:hover{
-			background:darken($yellow,8%);
+			background:darken($purple,3%);
 		}
 
 		&:active, &:focus{
-			color:#222;
+			color:#fff;
 			@include box-shadow(none !important);
-			background:darken($yellow,20%);
+			background:darken($purple,5%);
 		}
 	}
 }
 
 .btn{font-weight: 600;}
 
+a.btn.btn-outline-danger{
+	border: 1px solid $red;
+	color:#ddd !important;
+
+	&:hover{
+		background:$red;
+		color:#fff;
+	}
+}
+
 .btn.btn-primary{
 	background:none;
 	border:1px solid $green;
-	color:#ccc;
+	color:$green;
 	@include transition(all, ease, 0.25s);
-	// text-transform: uppercase;
+
 	font-weight: 600;
 	font-size: 14px;
 	padding: 10px;
@@ -308,6 +331,38 @@ table.table{
 	}
 }
 
+.delete_trade{
+	color:#e3342f;
+	&:hover{
+		color:lighten(#e3342f,10%);
+	}
+}
+
+.modal-header{
+	color:$green;
+	background:darken(#303030,3%);
+	border-bottom:1px solid #555;
+}
+
+.modal-content{
+	background:#303030;
+}
+
+.modal-title{
+	color:$purple;
+}
+
+.modal-body{
+	p{
+		font-size: 18px;
+		padding-bottom: 0;
+	}
+}
+
+.modal-footer{
+	background:darken(#303030,3%);
+	border-top:1px solid #555;
+}
 
 .footer{
 	padding-top: 100px;
