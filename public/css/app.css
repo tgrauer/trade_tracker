@@ -11120,7 +11120,9 @@ a.btn.btn-outline-danger:hover {
 
 input.form-control,
 .form-control:disabled,
-.form-control[readonly] {
+.form-control[readonly],
+select.form-control.selectpicker,
+.bootstrap-select > .dropdown-toggle {
   height: 55px;
   background: #2e2e2e;
   border: 1px solid #111;
@@ -11132,11 +11134,44 @@ input.form-control:active,
 .form-control:disabled:focus,
 .form-control:disabled:active,
 .form-control[readonly]:focus,
-.form-control[readonly]:active {
+.form-control[readonly]:active,
+select.form-control.selectpicker:focus,
+select.form-control.selectpicker:active,
+.bootstrap-select > .dropdown-toggle:focus,
+.bootstrap-select > .dropdown-toggle:active {
   background: #404040;
   box-shadow: none !important;
   border: 1px solid #111 !important;
   color: #ddd;
+}
+
+.dropdown-menu.show,
+button.btn.dropdown-toggle.btn-light {
+  background: #2e2e2e;
+  border: 1px solid #111;
+  color: #ddd;
+}
+
+.bootstrap-select .dropdown-menu li a {
+  background: #2e2e2e;
+  color: #ddd;
+}
+
+.bootstrap-select .dropdown-menu li a:hover {
+  background: #00cca5;
+  color: #fff;
+}
+
+span.bs-ok-default.check-mark {
+  color: #8479e9;
+}
+
+.filter-option-inner-inner {
+  color: #ddd;
+}
+
+.filter-option {
+  padding-top: 10px;
 }
 
 .input-group > .input-group-prepend > .btn,

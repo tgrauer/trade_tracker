@@ -9,6 +9,7 @@ var APP = {
 		$('.trade_type').on('click', this.show_trade_type_form);
 		$('.edit_trade').on('click', this.edit_trade);
 		$('.delete_trade').on('click', this.delete_trade);
+		$('.update_profile').on('submit', this.update_profile);
 	},
 
 	search:function(e){
@@ -104,6 +105,7 @@ var APP = {
         		strike_price:strike_price
         	},
         	success:function(response){
+        		console.log(response);
         		$('.search_results').empty().hide();
         		$('.add_trade')[0].reset();
         	}
@@ -122,6 +124,46 @@ var APP = {
 
 		$('#delete_trade_modal').find('.modal-body p span').text(trade_ticker +' '+ trade_company_name);
 		console.log(trade_ticker +' '+ trade_company_name);
+	},
+
+	update_profile:function(e){
+		e.preventDefault();
+		var name = $('.update_profile #name').val()
+			email = $('.update_profile #email').val(),
+			phone = $('.update_profile #phone').val()
+		;
+
+		var brokerages = [];
+        $('.update_profile #brokerage option:selected').each(function () {
+            brokerages.push($(this).val());
+        });
+
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+        	url:'update_profile',
+        	type:'POST',
+        	dataType:'json',
+        	data:{
+        		_token:token,
+        		name:name,
+        		email:email,
+        		phone:phone,
+        		brokerage:brokerages
+        	},
+        	success:function(response){
+        		console.log(response);
+        		$('.update_profile')[0].reset();
+        		location.reload();			
+        	}
+        });
 	}
 }
 

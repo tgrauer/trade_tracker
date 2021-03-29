@@ -176,7 +176,7 @@ a.btn.btn-outline-danger{
 	}
 }
 
-input.form-control, .form-control:disabled, .form-control[readonly] {
+input.form-control, .form-control:disabled, .form-control[readonly], select.form-control.selectpicker, .bootstrap-select>.dropdown-toggle {
 	height: 55px;
 	background:darken(#333,2%);
 	border:1px solid #111;
@@ -189,6 +189,39 @@ input.form-control, .form-control:disabled, .form-control[readonly] {
 		color:#ddd;
 	}
 }
+
+// .bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover{
+// 	background:darken(#333,2%);
+// 	border:1px solid #111;
+// 	color:#ddd;
+
+// 	&:focus, &:active{
+// 		background:lighten(#333,5%);
+// 		@include box-shadow(none !important);
+// 		border:1px solid #111 !important;
+// 		color:#ddd;
+// 	}
+// }
+
+.dropdown-menu.show, button.btn.dropdown-toggle.btn-light{
+	background:darken(#333,2%);
+	border:1px solid #111;
+	color:#ddd;
+}
+
+.bootstrap-select .dropdown-menu li a{
+	background:darken(#333,2%);
+	color:#ddd;
+
+	&:hover{
+		background:$dark_green;
+		color:#fff;
+	}
+}
+
+span.bs-ok-default.check-mark{color:$purple;}
+.filter-option-inner-inner{color:#ddd;}
+.filter-option {padding-top: 10px;}
 
 .input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text, .input-group:not(.has-validation) > .input-group-append:not(:last-child) > .btn, .input-group:not(.has-validation) > .input-group-append:not(:last-child) > .input-group-text, .input-group.has-validation > .input-group-append:nth-last-child(n+3) > .btn, .input-group.has-validation > .input-group-append:nth-last-child(n+3) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
     background:darken(#333,5%) !important;

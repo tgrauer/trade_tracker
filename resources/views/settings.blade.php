@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+{{-- {{ dd(json_decode($user_info->brokerage, true)) }} --}}
 
 @section('content')
 <div class="container bg">
@@ -13,6 +14,41 @@
     <div class="row">
     	<div class="col-sm-12">
     		<h3>Settings</h3>
+
+    		<form action="#" method="POST" class="form update_profile">
+
+    			@csrf
+
+    			<div class="form-group">
+    				<label>Name</label>
+    				<input type="text" class="form-control" name="name" id="name" value="{{$user_info->name}}">
+    			</div>
+
+    			<div class="form-group">
+    				<label>Email</label>
+    				<input type="text" class="form-control" name="email" id="email" value="{{$user_info->email}}">
+    			</div>
+
+    			<div class="form-group">
+    				<label>Phone</label>
+    				<input type="text" class="form-control" name="phone" id="phone" value="{{$user_info->phone ? $user_info->phone : ''}}" placeholder="Add Phone Number">
+    			</div>
+
+    			<div class="form-group">
+    				<label>Brokerage</label>
+    				<select name="brokerage" id="brokerage" class="form-control selectpicker" multiple>
+    					@php
+    						$brokerages=json_decode($user_info->brokerage, true);
+    					@endphp
+
+    					@foreach($brokers as $broker)
+    						<option {{$broker->id == $brokerages[$loop->index] ? 'selected' : ''}} value="{{$broker->id}}">{{$broker->name}}</option>
+    					@endforeach
+    				</select>
+    			</div>
+
+    			<input type="submit" class="btn btn-primary" value="Save Changes">
+    		</form>
     	</div>
     </div>
 </div>

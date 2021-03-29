@@ -109,6 +109,13 @@ echo '</pre>';
 
                 <div class="alert alert-danger hidetilloaded">No Results Found</div>
             </div>
+
+            <div class="multiple_brokerages my-5">
+                <h3>Using multiple brokerages to trade?</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus dicta vel dignissimos explicabo, nostrum illum unde error molestiae eum incidunt eos! Laudantium similique, provident voluptas dolorum officia vitae expedita molestiae?</p>
+
+                <a href="{{url('/settings')}}" class="btn btn-primary">Go to Settings</a>
+            </div>
             
         </div>
 
@@ -152,15 +159,6 @@ echo '</pre>';
 
 
             <a href="{{ url('/trades') }}" class="btn btn-primary mt-3 float-right">View Trade History</a>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-sm-6">
-            <h3>Using multiple brokerages to trade</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus dicta vel dignissimos explicabo, nostrum illum unde error molestiae eum incidunt eos! Laudantium similique, provident voluptas dolorum officia vitae expedita molestiae?</p>
-
-            <a href="{{url('/settings')}}" class="btn btn-primary">Go to Settings</a>
         </div>
     </div>
 </div>

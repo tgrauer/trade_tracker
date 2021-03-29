@@ -41,7 +41,6 @@ class StockController extends Controller
 
     public function addTrade(Request $request)
     {
-
     	$created_at = Carbon::createFromDate($request->date_purchased);
     	if(!empty($request->expiration_date)){
     		$expiration_date = Carbon::createFromDate($request->expiration_date);

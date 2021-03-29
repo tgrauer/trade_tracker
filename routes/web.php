@@ -24,5 +24,6 @@ Route::post('/add_trade/{ticker}', 'StockController@addTrade');
 Route::get('/trades', 'StockController@tradeHistory');
 
 Route::get('/settings', 'SettingsController@index');
+Route::post('/update_profile', 'SettingsController@updateProfile');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
