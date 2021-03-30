@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-{{-- {{ dd(json_decode($user_info->brokerage, true)) }} --}}
-
 @section('content')
 <div class="container bg">
     <div class="row pt-4">
@@ -42,7 +40,7 @@
     					@endphp
 
     					@foreach($brokers as $broker)
-    						<option {{$broker->id == $brokerages[$loop->index] ? 'selected' : ''}} value="{{$broker->id}}">{{$broker->name}}</option>
+    						<option {{ in_array($broker->id, $brokerages) ? 'selected' : ' '}} value="{{$broker->id}}">{{$broker->name}}</option>
     					@endforeach
     				</select>
     			</div>
