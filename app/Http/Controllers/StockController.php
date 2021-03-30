@@ -27,6 +27,7 @@ class StockController extends Controller
             'js_file'=>'datepicker.js',
             'trades' => $this->getTradeHistory(5),
             'day_trades' => $this->getDayTrades(), 
+            'brokers' => $this->getBrokers(),
             'page_type' => 'page'
         ];
         
@@ -120,6 +121,40 @@ class StockController extends Controller
     	    	return true;
     	    }
     	}
+    }
+
+    public function getBrokers()
+    {
+
+    	// get users brokers
+    	$users_brokers = DB::table('users')
+    		->where('id', Auth::id())
+    		->pluck('brokerage')
+    	;
+
+    	// $users_brokers=json_decode($users_brokers, true); // turn brokerage column result to array
+    	$users_brokers = substr($users_brokers[0], 1); // remove FIRST character of result string
+    	$users_brokers = substr($users_brokers, 0, -1); // remove LAST character of result string
+    	$users_brokers = str_replace('"', "", $users_brokers); // remove quotes
+    	$users_brokers = str_replace(',', "", $users_brokers); // remove commas
+    	$users_brokers = explode(' ', $users_brokers); // turn brokerage column result string to array
+
+    	// get broker names from the ids of the users brokers
+    	// $brokers_arr=[];
+    	// foreach($users_brokers as $b){
+    	// 	$brokers = DB::table('brokers')
+    	// 		->where('id', $b)
+    	// 		->get();
+    	// 		// turn collections to arrays
+    	// 		array_push($brokers_arr, $brokers->toArray());
+    	// }
+
+    	// $return_brokers_arr=[];
+    	// foreach ($brokers_arr as $field => $value) {
+    	// 	$return_brokers_arr[$field]=$value;
+    	// }
+
+    	return $users_brokers;
     }
 
 

@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
-{{-- <?php  
+<?php  
 echo '<pre>';
-dd($day_trades);
+dd($brokers);
 echo '</pre>';
-?> --}}
+?>
+
+@foreach($brokers as $broker)
+   {{$broker}}
+@endforeach
+
+
 @section('content')
 <div class="container bg">
     <div class="row pt-4">
@@ -20,6 +26,17 @@ echo '</pre>';
                     @csrf
 
                     <h3 class="mb-3">Add a Day Trade</h3>
+
+                    {{-- <div class="form-group">
+                        <label>Brokerage</label>
+                        <select name="brokerage" id="brokerage" class="brokerage">
+                            @foreach($brokers as $broker)
+                                <option value="{{$broker->}}"></option>
+                            @endforeach
+                        </select>
+                    </div> --}}
+
+
                     <div class="form-group mb-0">
                         <label class="mb-0">Ticker</label>
                         <input type="text" class="form-control search" name="search" placeholder="Search by Ticker or Company Name" autocomplete="off" required>
