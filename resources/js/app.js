@@ -68,8 +68,13 @@ var APP = {
 			company_name = $('.company_name').val(),
 			date_purchased = $('.date_purchased').val(),
 			trade_type = $('.trade_type:checked').val(),
-			purchase_price = $('.purchase_price').val()
+			purchase_price = $('.purchase_price').val(),
+			brokerage=''
 		;
+
+		if($('.brokerage').length){
+			brokerage = $('.brokerage').val();
+		}
 
 		if(trade_type=='shares'){
 			var numb_shares = $('.numb_shares').val();
@@ -102,7 +107,8 @@ var APP = {
         		numb_shares:numb_shares,
         		option_type:option_type,
         		expiration_date:expiration_date,
-        		strike_price:strike_price
+        		strike_price:strike_price,
+        		brokerage:brokerage
         	},
         	success:function(response){
         		console.log(response);

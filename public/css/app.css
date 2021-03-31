@@ -11119,6 +11119,7 @@ a.btn.btn-outline-danger:hover {
 }
 
 input.form-control,
+select.form-control,
 .form-control:disabled,
 .form-control[readonly],
 select.form-control.selectpicker,
@@ -11131,6 +11132,8 @@ select.form-control.selectpicker,
 
 input.form-control:focus,
 input.form-control:active,
+select.form-control:focus,
+select.form-control:active,
 .form-control:disabled:focus,
 .form-control:disabled:active,
 .form-control[readonly]:focus,

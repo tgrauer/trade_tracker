@@ -40,12 +40,14 @@ class SettingsController extends Controller
     		array_push($brokerage_text, $value);
     	}
 
+    	$brokerage_array = serialize($brokerage_text);
+
     	$update_profile = DB::table('users')
     	    ->where('id', Auth::id())
     	    ->update(
     	    	array('name' => $request->name,
     	    		'phone' => $request->phone,
-    	    		'brokerage' => $brokerage_text
+    	    		'brokerage' => $brokerage_array
     	    ));
 
     	return $update_profile;

@@ -28,6 +28,7 @@ class StockController extends Controller
             'trades' => $this->getTradeHistory(5),
             'day_trades' => $this->getDayTrades(), 
             'brokers' => $this->getBrokers(),
+            'uses_more_than_one' => $this->usersHasMultipleBrokers(),
             'page_type' => 'page'
         ];
         
@@ -54,6 +55,10 @@ class StockController extends Controller
     		'purchase_price' => $request->purchase_price,
     		'created_at' => $created_at
     	];    	
+
+    	if($request->brokerage){
+    		$post_array['broker'] = $request->brokerage;
+    	}
 
     	// if shares
     	if($request->trade_type == 'shares'){
@@ -84,6 +89,19 @@ class StockController extends Controller
     	return $trades;
     }
 
+    public function usersHasMultipleBrokers()
+    {
+    	// check if users has more than one broker
+    	$uses_more_than_one = DB::table('users')
+    			->where('id', Auth::id())
+    			->pluck('brokerage')
+    	;
+
+    	if(!empty($uses_more_than_one[0])){
+    		return true;
+    	}
+    }
+
     public function getDayTrades()
     {
     	
@@ -105,6 +123,7 @@ class StockController extends Controller
 			->where('created_at', '>=', $begin_dt_range)
 			->orderBy('created_at', 'asc')
 			->get()
+			->groupBy('broker')
 		;
 
     	return $day_trades;
@@ -132,31 +151,28 @@ class StockController extends Controller
     		->pluck('brokerage')
     	;
 
-    	// $users_brokers=json_decode($users_brokers, true); // turn brokerage column result to array
-    	$users_brokers = substr($users_brokers[0], 1); // remove FIRST character of result string
-    	$users_brokers = substr($users_brokers, 0, -1); // remove LAST character of result string
-    	$users_brokers = str_replace('"', "", $users_brokers); // remove quotes
-    	$users_brokers = str_replace(',', "", $users_brokers); // remove commas
-    	$users_brokers = explode(' ', $users_brokers); // turn brokerage column result string to array
-
     	// get broker names from the ids of the users brokers
-    	// $brokers_arr=[];
-    	// foreach($users_brokers as $b){
-    	// 	$brokers = DB::table('brokers')
-    	// 		->where('id', $b)
-    	// 		->get();
-    	// 		// turn collections to arrays
-    	// 		array_push($brokers_arr, $brokers->toArray());
-    	// }
+    	if(!empty($users_brokers[0])){
+    		$users_brokers_array = unserialize($users_brokers[0]);
+    		$brokers_arr=[];
+    		foreach($users_brokers_array as $b){
+    			$brokers = DB::table('brokers')
+    				->where('id', $b)
+    				->get();
+    				// turn collections to arrays
+    				array_push($brokers_arr, $brokers->toArray());
+    		}
+
+    		return $brokers_arr;
+    	}else{
+    		return [];
+    	}
 
     	// $return_brokers_arr=[];
     	// foreach ($brokers_arr as $field => $value) {
     	// 	$return_brokers_arr[$field]=$value;
     	// }
-
-    	return $users_brokers;
     }
-
 
     public function tradeHistory()
     {

@@ -176,7 +176,7 @@ a.btn.btn-outline-danger{
 	}
 }
 
-input.form-control, .form-control:disabled, .form-control[readonly], select.form-control.selectpicker, .bootstrap-select>.dropdown-toggle {
+input.form-control, select.form-control, .form-control:disabled, .form-control[readonly], select.form-control.selectpicker, .bootstrap-select>.dropdown-toggle {
 	height: 55px;
 	background:darken(#333,2%);
 	border:1px solid #111;

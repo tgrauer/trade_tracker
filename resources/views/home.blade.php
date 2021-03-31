@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
 <?php  
-echo '<pre>';
-dd($brokers);
-echo '</pre>';
+
+foreach($day_trades as $broker_trades => $collection) {
+  dump($broker_trades, $collection);
+}
+return false;
 ?>
-
-@foreach($brokers as $broker)
-   {{$broker}}
-@endforeach
-
 
 @section('content')
 <div class="container bg">
@@ -27,15 +24,18 @@ echo '</pre>';
 
                     <h3 class="mb-3">Add a Day Trade</h3>
 
-                    {{-- <div class="form-group">
+                    @if(count($brokers))
+                    <div class="form-group">
                         <label>Brokerage</label>
-                        <select name="brokerage" id="brokerage" class="brokerage">
-                            @foreach($brokers as $broker)
-                                <option value="{{$broker->}}"></option>
+                        <select name="brokerage" id="brokerage" class="brokerage form-control" required>
+                            <option value="">Select Broker</option>
+                            @foreach($brokers as $broker[0])
+                                <option value="{{$broker[0][0]->id}}">{{$broker[0][0]->name}}</option>
                             @endforeach
                         </select>
-                    </div> --}}
+                    </div>
 
+                    @endif
 
                     <div class="form-group mb-0">
                         <label class="mb-0">Ticker</label>
@@ -139,14 +139,34 @@ echo '</pre>';
         <div class="col-sm-6 mb-5">
             <h3 class="mb-3">Day Trades Used</h3>
 
-            <div class="row d-flex justify-content-around mb-5">
+        @if($uses_more_than_one)
+            @foreach($brokers as $broker[0])
 
-                @for($i=0;$i<3;$i++)
-                    <div class="col-xs-4">
-                        <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
-                    </div> 
-                @endfor                
+                <div class="day_trades_used">
+                    @if($uses_more_than_one)
+                        <h5 class="mt-5">{{$broker[0][0]->name}}</h5>
+                    @endif
+
+                    <div class="row d-flex justify-content-around mb-5">
+                        @for($i=0;$i<3;$i++)
+                            <div class="col-xs-4">
+                                <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
+                            </div> 
+                        @endfor                
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <div class="day_trades_used">
+                <div class="row d-flex justify-content-around mb-5">
+                    @for($i=0;$i<3;$i++)
+                        <div class="col-xs-4">
+                            <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
+                        </div> 
+                    @endfor                
+                </div>
             </div>
+        @endif
 
             <h3 class="mt-4">Recent Trades</h3>
             <div class="table-responsive recent_trades mt-4">

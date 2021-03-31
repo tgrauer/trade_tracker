@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+{{-- <?php  
+$t = unserialize($user_info->brokerage);
+dd($t);
+?> --}}
 @section('content')
 <div class="container bg">
     <div class="row pt-4">
@@ -36,7 +39,7 @@
     				<label>Brokerage</label>
     				<select name="brokerage" id="brokerage" class="form-control selectpicker" multiple>
     					@php
-    						$brokerages=json_decode($user_info->brokerage, true);
+    						$brokerages = unserialize($user_info->brokerage);
     					@endphp
 
     					@foreach($brokers as $broker)
