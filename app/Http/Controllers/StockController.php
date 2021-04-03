@@ -118,13 +118,25 @@ class StockController extends Controller
     		$begin_dt_range = $today->subWeekday($numb_days_back);
     	}
 
-    	$day_trades = DB::table('trades')
+    	$uses_more_than_one = $this->usersHasMultipleBrokers();
+
+    	if($uses_more_than_one){
+    		$day_trades = DB::table('trades')
 			->where('user_id', Auth::id())
 			->where('created_at', '>=', $begin_dt_range)
 			->orderBy('created_at', 'asc')
 			->get()
-			->groupBy('broker')
+			->groupBy('broker')->toArray()
 		;
+		}else{
+			$day_trades = DB::table('trades')
+				->where('user_id', Auth::id())
+				->where('created_at', '>=', $begin_dt_range)
+				->orderBy('created_at', 'asc')
+				->get()->toArray()
+			;
+		}
+    	
 
     	return $day_trades;
     }
@@ -159,7 +171,6 @@ class StockController extends Controller
     			$brokers = DB::table('brokers')
     				->where('id', $b)
     				->get();
-    				// turn collections to arrays
     				array_push($brokers_arr, $brokers->toArray());
     		}
 
@@ -167,11 +178,6 @@ class StockController extends Controller
     	}else{
     		return [];
     	}
-
-    	// $return_brokers_arr=[];
-    	// foreach ($brokers_arr as $field => $value) {
-    	// 	$return_brokers_arr[$field]=$value;
-    	// }
     }
 
     public function tradeHistory()

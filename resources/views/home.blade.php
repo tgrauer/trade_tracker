@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-<?php  
+    {{-- <?php  
+    dd($day_trades);
+    foreach($brokers as $key=>$value){
+         echo $value.' is '.$day_trades[$key][0]['ticker'];
+     }
+    return false;
 
-foreach($day_trades as $broker_trades => $collection) {
-  dump($broker_trades, $collection);
-}
-return false;
-?>
+    ?> --}}
 
 @section('content')
 <div class="container bg">
@@ -133,7 +134,6 @@ return false;
 
                 <a href="{{url('/settings')}}" class="btn btn-primary">Go to Settings</a>
             </div>
-            
         </div>
 
         <div class="col-sm-6 mb-5">
@@ -141,29 +141,39 @@ return false;
 
         @if($uses_more_than_one)
             @foreach($brokers as $broker[0])
-
                 <div class="day_trades_used">
-                    @if($uses_more_than_one)
-                        <h5 class="mt-5">{{$broker[0][0]->name}}</h5>
-                    @endif
+                    
+                    @foreach($day_trades as $trade)
+                        @if($trade[$loop->index]->broker == $broker[0][0]->id)
+                            <h5 class="mt-5">{{$broker[0][0]->name}}</h5>
+                            
+                            <div class="row d-flex justify-content-around mb-5">
+                            
+                                @for($i=0;$i<3;$i++)
+                                    <div class="col-xs-4">
+                                        <div class="day_trades mt-3 {{empty($trade[$i]->ticker) ? '' : 'traded' }}">
+                                            {{empty($trade[$i]) ? '' :$trade[$i]->ticker }}
+                                        </div>
+                                    </div> 
+                            
+                                @endfor
+                            
+                            </div>
+                        @endif
+                    @endforeach
 
-                    <div class="row d-flex justify-content-around mb-5">
-                        @for($i=0;$i<3;$i++)
-                            <div class="col-xs-4">
-                                <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
-                            </div> 
-                        @endfor                
-                    </div>
                 </div>
             @endforeach
         @else
             <div class="day_trades_used">
                 <div class="row d-flex justify-content-around mb-5">
+                   
                     @for($i=0;$i<3;$i++)
                         <div class="col-xs-4">
                             <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
-                        </div> 
-                    @endfor                
+                        </div>
+                    @endfor   
+
                 </div>
             </div>
         @endif
@@ -175,6 +185,7 @@ return false;
                         <tr>
                             <th>Date</th>
                             <th>Ticker</th>
+                            <th>Name</th>
                             <th>Trade Type</th>
                         </tr>
                     </thead>
@@ -187,6 +198,7 @@ return false;
                             <tr>
                                 <td>{{$trade_date}}</td>
                                 <td>{{$trade->ticker}}</td>
+                                <td>{{$trade->company_name}}</td>
                                 <td>{{$trade->trade_type}}</td>
                             </tr>
                         @endforeach
