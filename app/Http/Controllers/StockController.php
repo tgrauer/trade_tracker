@@ -81,6 +81,7 @@ class StockController extends Controller
     {
     	$trades = DB::table('trades')
     		->where('user_id', Auth::id())
+    		->join('brokers', 'trades.broker', '=', 'brokers.broker_id')
     		->orderBy('created_at', 'desc')
     		->take($limit)
     		->get()
@@ -169,7 +170,7 @@ class StockController extends Controller
     		$brokers_arr=[];
     		foreach($users_brokers_array as $b){
     			$brokers = DB::table('brokers')
-    				->where('id', $b)
+    				->where('broker_id', $b)
     				->get();
     				array_push($brokers_arr, $brokers->toArray());
     		}
@@ -182,10 +183,18 @@ class StockController extends Controller
 
     public function tradeHistory()
     {
-    		$data=[
-    	        'trades' => $this->getTradeHistory(),
-    	        'page_type' => 'page'
-    	    ];
+		$data=[
+	        'trades' => $this->getTradeHistory(),
+	        'page_type' => 'page'
+	    ];
+
     	return view('trades')->with($data);
+    }
+
+    public function deleteTrade(Request $request)
+    {
+    	DB::table('trades')->where('id', '=', $request->trade_id)->delete();
+    	return $request->trade_id;
+
     }
 }

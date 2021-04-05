@@ -10,6 +10,7 @@ var APP = {
 		$('.edit_trade').on('click', this.edit_trade);
 		$('.delete_trade').on('click', this.delete_trade);
 		$('.update_profile').on('submit', this.update_profile);
+		$('.delete_trade_submit').on('click', this.delete_trade_submit);
 	},
 
 	search:function(e){
@@ -129,7 +130,37 @@ var APP = {
 		var trade_company_name = $('.trade_history_table').find('[data-trade_id='+trade_id+']').find('.trade_company_name').text();
 
 		$('#delete_trade_modal').find('.modal-body p span').text(trade_ticker +' '+ trade_company_name);
-		console.log(trade_ticker +' '+ trade_company_name);
+		$('#delete_trade_modal').find('.modal-body .trade_id').val(trade_id);
+	},
+
+	delete_trade_submit:function(e) {
+		e.preventDefault();
+		var trade_id = $('#delete_trade_modal').find('.modal-body .trade_id').val();
+		console.log(trade_id);
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+        	url:'/delete_trade/'+trade_id,
+        	type:'POST',
+        	dataType:'json',
+        	data:{
+        		_token:token,
+        		trade_id:trade_id
+        	},
+        	success:function(response){
+        		console.log(response);
+        		/// close modal & remove from table
+        		$('#delete_trade_modal').modal('toggle');
+        		$('.trade_history_table tbody').find('tr[data-trade_id="' + response + '"]');
+        	}
+        });
 	},
 
 	update_profile:function(e){
@@ -175,16 +206,18 @@ var APP = {
 
 $(document).ready(function(){
 	APP.init();
-	document.getElementById("purchase_price").onblur =function (){    
+	if($('#purchase_price').length){
+		document.getElementById("purchase_price").onblur =function (){    
+		    //number-format the user input
+		    this.value = parseFloat(this.value.replace(/,/g, ""))
+		                    .toFixed(2)
+		                    .toString()
+		                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-	    //number-format the user input
-	    this.value = parseFloat(this.value.replace(/,/g, ""))
-	                    .toFixed(2)
-	                    .toString()
-	                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		    // //set the numeric value to a number input
+		    this.value = this.value.replace(/,/g, "")
 
-	    // //set the numeric value to a number input
-	    this.value = this.value.replace(/,/g, "")
-
+		}
 	}
+	
 });

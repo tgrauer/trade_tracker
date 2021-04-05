@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{-- <?php
+	dd($trades);
+?> --}}
 
 @section('content')
 <div class="container bg">
@@ -24,9 +27,10 @@
 	    		            	<th></th>
 	    		            	<th></th>
 	    		            	<th>Date</th>
-	    		            	<th>Type</th>
+	    		            	<th>Brokerage</th>
 	    		                <th>Ticker</th>
 	    		                <th>Company</th>
+	    		                <th>Type</th>
 	    		                <th>Shares</th>
 	    		                <th>Price</th>
 	    		                <th>Option Type</th>
@@ -51,9 +55,10 @@
 	    		                	<td><a href="#" data-toggle="modal" data-target="#edit_trade_modal" class="edit_trade"><i class="fas fa-edit"></i></a></td>
 	    		                	<td><a href="#" data-toggle="modal" data-target="#delete_trade_modal" class="delete_trade"><i class="fas fa-trash-alt"></i></a></td>
 	    		                	<td>{{$trade_date}}</td>
-	    		                	<td>{{$trade->trade_type}}</td>
+	    		                	<td>{{$trade->name}}</td>
 	    		                    <td class="trade_ticker">{{$trade->ticker}}</td>
 	    		                    <td class="trade_company_name">{{$trade->company_name}}</td>
+	    		                    <td>{{$trade->trade_type}}</td>
 	    		                    <td>{{$trade->numb_shares}}</td>
 	    		                    <td>{{$trade->purchase_price}}</td>
 	    		                    <td>{{$trade->option_type}}</td>
@@ -103,9 +108,10 @@
       		</div>
 	    	<div class="modal-body">
 	        	<p>Are you sure you want to delete <span></span>?</p>
+	        	<input type="hidden" class="trade_id" name="trade_id">
 	     	</div>
 	     	<div class="modal-footer">
-	        	<button type="button" class="btn btn-danger">Delete Trade</button>
+	        	<button type="button" class="btn btn-danger delete_trade_submit">Delete Trade</button>
 	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	     	</div>
     	</div>

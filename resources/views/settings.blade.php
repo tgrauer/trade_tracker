@@ -8,7 +8,7 @@ dd($t);
     <div class="row pt-4">
         <div class="col-sm-3 offset-9">
             <a href="{{ url('/logout') }}" class="btn btn-outline-danger float-right">Log Out</a>
-            <a href="{{url('/home')}}" class="btn btn-secondary">Back to Dashboard</a>
+            <a href="{{url('/home')}}" class="btn btn-secondary float-right mr-3">Back to Dashboard</a>
         </div>
     </div>
 
@@ -43,7 +43,7 @@ dd($t);
     					@endphp
 
     					@foreach($brokers as $broker)
-    						<option {{ in_array($broker->id, $brokerages) ? 'selected' : ' '}} value="{{$broker->id}}">{{$broker->name}}</option>
+    						<option {{ in_array($broker->broker_id, $brokerages) ? 'selected' : ' '}} value="{{$broker->broker_id}}">{{$broker->name}}</option>
     					@endforeach
     				</select>
     			</div>

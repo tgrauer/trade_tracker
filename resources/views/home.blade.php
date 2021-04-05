@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-    {{-- <?php  
+{{--     <?php  
     dd($day_trades);
     foreach($brokers as $key=>$value){
          echo $value.' is '.$day_trades[$key][0]['ticker'];
@@ -14,6 +14,7 @@
     <div class="row pt-4">
         <div class="col-sm-3 offset-9">
             <a href="{{ url('/logout') }}" class="btn btn-outline-danger float-right">Log Out</a>
+            <a href="{{url('/settings')}}" class="btn btn-secondary float-right mr-3"><i class="fas fa-cog"></i> Settings</a>
         </div>
     </div>
 
@@ -31,7 +32,7 @@
                         <select name="brokerage" id="brokerage" class="brokerage form-control" required>
                             <option value="">Select Broker</option>
                             @foreach($brokers as $broker[0])
-                                <option value="{{$broker[0][0]->id}}">{{$broker[0][0]->name}}</option>
+                                <option value="{{$broker[0][0]->broker_id}}">{{$broker[0][0]->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -132,19 +133,20 @@
                 <h3>Using multiple brokerages to trade?</h3>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus dicta vel dignissimos explicabo, nostrum illum unde error molestiae eum incidunt eos! Laudantium similique, provident voluptas dolorum officia vitae expedita molestiae?</p>
 
-                <a href="{{url('/settings')}}" class="btn btn-primary">Go to Settings</a>
+                <a href="{{url('/settings')}}" class="btn btn-primary mt-3">Go to Settings</a>
             </div>
         </div>
 
         <div class="col-sm-6 mb-5">
             <h3 class="mb-3">Day Trades Used</h3>
 
+        {{-- multiple brokerages --}}
         @if($uses_more_than_one)
             @foreach($brokers as $broker[0])
                 <div class="day_trades_used">
                     
                     @foreach($day_trades as $trade)
-                        @if($trade[$loop->index]->broker == $broker[0][0]->id)
+                        @if($trade[$loop->index]->broker == $broker[0][0]->broker_id)
                             <h5 class="mt-5">{{$broker[0][0]->name}}</h5>
                             
                             <div class="row d-flex justify-content-around mb-5">
@@ -152,10 +154,9 @@
                                 @for($i=0;$i<3;$i++)
                                     <div class="col-xs-4">
                                         <div class="day_trades mt-3 {{empty($trade[$i]->ticker) ? '' : 'traded' }}">
-                                            {{empty($trade[$i]) ? '' :$trade[$i]->ticker }}
+                                            {{empty($trade[$i]) ? $i +1 :$trade[$i]->ticker }}
                                         </div>
                                     </div> 
-                            
                                 @endfor
                             
                             </div>
@@ -164,6 +165,7 @@
 
                 </div>
             @endforeach
+        {{-- single brokerage --}}
         @else
             <div class="day_trades_used">
                 <div class="row d-flex justify-content-around mb-5">
