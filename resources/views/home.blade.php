@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 {{--     <?php  
-    dd($day_trades);
-    foreach($brokers as $key=>$value){
-         echo $value.' is '.$day_trades[$key][0]['ticker'];
-     }
+    foreach($day_trades as $key => $value){
+        echo $key;
+        foreach ($day_trades[$key] as $trade) {
+            echo $trade->ticker;
+        }
+    }
     return false;
 
     ?> --}}
@@ -144,9 +146,8 @@
         @if($uses_more_than_one)
             @foreach($brokers as $broker[0])
                 <div class="day_trades_used">
-                    
                     @foreach($day_trades as $trade)
-                        @if($trade[$loop->index]->broker == $broker[0][0]->broker_id)
+                        @if(!empty($trade[$loop->index]->broker) ?? null == $broker[0][0]->broker_id)
                             <h5 class="mt-5">{{$broker[0][0]->name}}</h5>
                             
                             <div class="row d-flex justify-content-around mb-5">
@@ -162,7 +163,6 @@
                             </div>
                         @endif
                     @endforeach
-
                 </div>
             @endforeach
         {{-- single brokerage --}}
