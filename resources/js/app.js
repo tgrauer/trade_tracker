@@ -196,7 +196,6 @@ var APP = {
         	},
         	success:function(response){
         		console.log(response);
-        		return false;
         		$('.update_profile')[0].reset();
         		location.reload();			
         	}
