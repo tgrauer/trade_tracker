@@ -79,12 +79,13 @@ class StockController extends Controller
 
     public function getTradeHistory($limit = null)
     {
-        $trades = DB::table('trades')
-            ->where('user_id', Auth::id())
-            ->join('brokers', 'trades.broker_id', '=', 'brokers.id')
-            ->orderBy('created_at', 'desc')
-            ->take($limit)
-            ->get();
+    	$trades = Auth::user()->trades()->with('broker')->latest()->take($limit)->get();
+        // $trades = DB::table('trades')
+        //     ->where('user_id', Auth::id())
+        //     ->join('brokers', 'trades.broker_id', '=', 'brokers.id')
+        //     ->orderBy('created_at', 'desc')
+        //     ->take($limit)
+        //     ->get();
 
         return $trades;
     }
@@ -161,7 +162,7 @@ class StockController extends Controller
             $brokers_arr = [];
             foreach ($users_brokers_array as $b) {
                 $brokers = DB::table('brokers')
-                    ->where('broker_id', $b)
+                    ->where('id', $b)
                     ->get();
                 array_push($brokers_arr, $brokers->toArray());
             }

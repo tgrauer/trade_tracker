@@ -15,12 +15,13 @@ class UpdateForeignKeyInTrades extends Migration
     public function up()
     {
         Schema::table('trades', function (Blueprint $table) {
-            $table->foreignId('broker_id')->nullable()->constrained();
+            $table->integer('broker_id')->unsigned();
         });
 
-        DB::statement('UPDATE trades SET broker_id = broker');
+        // DB::statement('UPDATE trades SET broker_id = broker');
 
         Schema::table('trades', function (Blueprint $table) {
+            $table->foreignId('broker_id')->nullable()->constrained();
             $table->dropColumn('broker');
         });
     }
@@ -32,11 +33,11 @@ class UpdateForeignKeyInTrades extends Migration
      */
     public function down()
     {
-        Schema::table('trades', function (Blueprint $table) {
-            $table->smallInteger('broker')->nullable();
-        });
+        // Schema::table('trades', function (Blueprint $table) {
+        //     $table->smallInteger('broker')->nullable();
+        // });
 
-        DB::statement('UPDATE trades SET broker = broker_id');
+        // DB::statement('UPDATE trades SET broker = broker_id');
 
         Schema::table('trades', function (Blueprint $table) {
             $table->dropColumn('broker_id');

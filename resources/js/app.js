@@ -175,7 +175,6 @@ var APP = {
             brokerages.push($(this).val());
         });
 
-
 		$.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -197,6 +196,7 @@ var APP = {
         	},
         	success:function(response){
         		console.log(response);
+        		return false;
         		$('.update_profile')[0].reset();
         		location.reload();			
         	}

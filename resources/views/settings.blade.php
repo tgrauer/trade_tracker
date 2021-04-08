@@ -1,7 +1,7 @@
 @extends('layouts.app')
 {{-- <?php  
-$t = unserialize($user_info->brokerage);
-dd($t);
+
+dd($user_info->brokerage);
 ?> --}}
 @section('content')
 <div class="container bg">
@@ -39,11 +39,16 @@ dd($t);
     				<label>Brokerage</label>
     				<select name="brokerage" id="brokerage" class="form-control selectpicker" multiple>
     					@php
-    						$brokerages = unserialize($user_info->brokerage);
+                            if(!empty($user_info->brokerage)){
+                                $brokerages = unserialize($user_info->brokerage);
+                            }else{
+                                $brokerages=[];
+                            }
+    						
     					@endphp
 
     					@foreach($brokers as $broker)
-    						<option {{ in_array($broker->broker_id, $brokerages) ? 'selected' : ' '}} value="{{$broker->broker_id}}">{{$broker->name}}</option>
+    						<option {{ in_array($broker->id, $brokerages) ? 'selected' : ' '}} value="{{$broker->id}}">{{$broker->name}}</option>
     					@endforeach
     				</select>
     			</div>

@@ -32,7 +32,7 @@
                         <select name="brokerage" id="brokerage" class="brokerage form-control" required>
                             <option value="">Select Broker</option>
                             @foreach($brokers as $broker[0])
-                                <option value="{{$broker[0][0]->broker_id}}">{{$broker[0][0]->name}}</option>
+                                <option value="{{$broker[0][0]->id}}">{{$broker[0][0]->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -146,7 +146,7 @@
                 <div class="day_trades_used">
                     
                     @foreach($day_trades as $trade)
-                        @if($trade[$loop->index]->broker == $broker[0][0]->broker_id)
+                        @if($trade[$loop->index]->broker == $broker[0][0]->id)
                             <h5 class="mt-5">{{$broker[0][0]->name}}</h5>
                             
                             <div class="row d-flex justify-content-around mb-5">
