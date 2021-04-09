@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Util\IEXCloud;
+use Trade;
 use DB;
 use Auth;
 use Carbon\Carbon;
@@ -160,11 +161,12 @@ class StockController extends Controller
         if (!empty($users_brokers[0])) {
             $users_brokers_array = unserialize($users_brokers[0]);
             $brokers_arr = [];
-            foreach ($users_brokers_array as $b) {
+            
+            foreach ($users_brokers_array as $key => $value) {
                 $brokers = DB::table('brokers')
-                    ->where('id', $b)
+                    ->where('id', $value)
                     ->get();
-                array_push($brokers_arr, $brokers->toArray());
+                array_push($brokers_arr, $brokers[0]);
             }
 
             return $brokers_arr;
