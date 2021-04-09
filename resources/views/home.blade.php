@@ -148,16 +148,17 @@
                     <h5 class="mt-5">{{$broker->name}}</h5>
 
                     @foreach($day_trades as $trade)
-                            
-                        <div class="row d-flex justify-content-around mb-5">
 
-                            @for($i=0;$i<3;$i++)
-                                <div class="col-xs-4">
-                                    <div class="day_trades mt-3 {{ empty($trade[$i]->ticker) ? '' : ($broker->id == $trade[$i]->broker ? 'traded' : '' ) }}">
-                                        {{empty($trade[$i]) ? $i +1 :$trade[$i]->ticker }}
-                                    </div>
-                                </div> 
-                            @endfor
+                        <div class="row d-flex justify-content-around mb-5">
+                            @if($broker->id == $trade[0]->broker)
+                                @for($i=0;$i<3;$i++)
+                                    <div class="col-xs-4">
+                                        <div class="day_trades mt-3 {{ empty($trade[$i]->ticker) ? '' : ($broker->id == $trade[$i]->broker ? 'traded' : '' ) }}">
+                                            {{empty($trade[$i]) ? $i +1 :$trade[$i]->ticker }}
+                                        </div>
+                                    </div> 
+                                @endfor
+                            @endif
                         </div>
                     @endforeach
                 </div>
