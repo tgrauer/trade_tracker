@@ -93,7 +93,7 @@ var APP = {
         });
 
         var token = $('meta[name="csrf-token"]').attr('content');
-
+        
         $.ajax({
         	url:'add_trade/'+ticker,
         	type:'POST',
@@ -112,9 +112,10 @@ var APP = {
         		brokerage:brokerage
         	},
         	success:function(response){
-        		console.log(response);
+
         		$('.search_results').empty().hide();
         		$('.add_trade')[0].reset();
+        		location.reload();	
         	}
         })
 	},
@@ -174,7 +175,6 @@ var APP = {
         $('.update_profile #brokerage option:selected').each(function () {
             brokerages.push($(this).val());
         });
-
 
 		$.ajaxSetup({
             headers: {

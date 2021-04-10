@@ -37495,9 +37495,9 @@ var APP = {
         brokerage: brokerage
       },
       success: function success(response) {
-        console.log(response);
         $('.search_results').empty().hide();
         $('.add_trade')[0].reset();
+        location.reload();
       }
     });
   },

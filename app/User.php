@@ -37,4 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'brokerage' => 'array',
     ];
+
+    public function trades()
+    {
+        return $this->hasMany(Trade::class);
+    }
 }

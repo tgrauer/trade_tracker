@@ -36,8 +36,8 @@ class SettingsController extends Controller
     {
 
     	$brokerage_text=[];
-    	foreach ($request->brokerage as $key => $value) {
-    		array_push($brokerage_text, $value);
+    	foreach ($request->brokerage as $broker) {
+    		array_push($brokerage_text, $broker);
     	}
 
     	$brokerage_array = serialize($brokerage_text);
