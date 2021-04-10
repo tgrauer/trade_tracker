@@ -93,7 +93,7 @@ var APP = {
         });
 
         var token = $('meta[name="csrf-token"]').attr('content');
-
+        
         $.ajax({
         	url:'add_trade/'+ticker,
         	type:'POST',
