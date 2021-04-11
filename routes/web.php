@@ -17,12 +17,12 @@ Route::view('/', 'welcome');
 Route::view('/login', 'auth.login');
 Auth::routes();
 
-Route::get('/home', 'StockController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/search/{search_term}', 'StockController@search');
-Route::post('/add_trade/{ticker}', 'StockController@addTrade');
-Route::post('/delete_trade/{ticker}', 'StockController@deleteTrade');
-Route::get('/trades', 'StockController@tradeHistory');
+Route::post('/search/{search_term}', 'TradesController@search');
+Route::post('/add_trade/{ticker}', 'TradesController@addTrade');
+Route::post('/delete_trade/{ticker}', 'TradesController@deleteTrade');
+Route::get('/trades', 'TradesController@tradeHistory');
 
 Route::get('/settings', 'SettingsController@index');
 Route::post('/update_profile', 'SettingsController@updateProfile');

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 {{--     <?php  
+
+    dd($day_trades);
     foreach($day_trades as $key => $value){
         echo $key;
         foreach ($day_trades[$key] as $trade) {
@@ -168,13 +170,14 @@
                 {{-- single brokerage --}}
                 @else
                     <div class="row d-flex justify-content-around mb-5">
-                       
+
                         @for($i=0;$i<3;$i++)
                             <div class="col-xs-4">
-                                <div class="day_trades mt-3 {{empty($day_trades[$i]->ticker) ? '' : 'traded'}}">{{empty($day_trades[$i]) ? $i +1  : $day_trades[$i]->ticker }}</div>
-                            </div>
+                                <div class="day_trades mt-3 {{ empty($day_trades[$i]->ticker) ? '' : 'traded' }}">
+                                    {{empty($day_trades[$i]) ? $i +1 :$day_trades[$i]->ticker }}
+                                </div>
+                            </div> 
                         @endfor   
-
                     </div>
                 @endif
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 {{-- <?php
-	dd($trades);
+	dd(DB::getQueryLog());
 ?> --}}
 
 @section('content')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Broker;
+use App\User;
 use Auth;
 
 class SettingsController extends Controller
@@ -27,27 +29,29 @@ class SettingsController extends Controller
 
     public function getBrokers()
     {
-    	return DB::table('brokers')
-    			->get()
-    		;
+    	return Broker::all();
     }
 
     public function updateProfile(Request $request)
     {
 
-    	$brokerage_text=[];
-    	foreach ($request->brokerage as $broker) {
-    		array_push($brokerage_text, $broker);
+    	if(!empty($request->brokerage)){
+    		$brokerage_text=[];
+    		foreach ($request->brokerage as $broker) {
+    			array_push($brokerage_text, $broker);
+    		}
+
+    		$brokerages = serialize($brokerage_text);
+    	}else{
+    		$brokerages ='';
     	}
-
-    	$brokerage_array = serialize($brokerage_text);
-
+    	
     	$update_profile = DB::table('users')
     	    ->where('id', Auth::id())
     	    ->update(
     	    	array('name' => $request->name,
     	    		'phone' => $request->phone,
-    	    		'brokerage' => $brokerage_array
+    	    		'brokerage' => $brokerages
     	    ));
 
     	return $update_profile;

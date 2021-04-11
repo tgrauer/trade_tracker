@@ -137,7 +137,6 @@ var APP = {
 	delete_trade_submit:function(e) {
 		e.preventDefault();
 		var trade_id = $('#delete_trade_modal').find('.modal-body .trade_id').val();
-		console.log(trade_id);
 
 		$.ajaxSetup({
             headers: {
@@ -156,10 +155,10 @@ var APP = {
         		trade_id:trade_id
         	},
         	success:function(response){
-        		console.log(response);
         		/// close modal & remove from table
         		$('#delete_trade_modal').modal('toggle');
         		$('.trade_history_table tbody').find('tr[data-trade_id="' + response + '"]');
+        		location.reload();	
         	}
         });
 	},

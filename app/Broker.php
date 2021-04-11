@@ -12,6 +12,9 @@ class Broker extends Model
 
     public function trades()
     {
-        return $this->hasMany(Trade::class);
+
+        return $this->belongsTo(Trade::class);
+        // return $this->BelongsToMany(Trade::class);
+
     }
 }
