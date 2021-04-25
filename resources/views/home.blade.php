@@ -151,21 +151,33 @@
 
                         <h5 class="mt-5">{{$broker->name}}</h5>
 
-                        @foreach($day_trades as $trade)
+                        {{-- for loop must be first to print number of day trades available even if there are no current day trades in the 3 in 5--}}                            
+                                
+                        <div class="row d-flex justify-content-around mb-5">
                             
-                                @if($broker->id == $trade[0]->broker)
-                                <div class="row d-flex justify-content-around mb-5">
-                                    @for($i=0;$i<3;$i++)
+                            {{-- for loop prints 3 divs for each broker the user has. either it prints the ticker of the trade or the number of trades available before reaching the 3 in 5 limit --}}
+                            @for($i=0;$i<3;$i++)
+
+                                @foreach($day_trades as $trade)
+                                    {{-- works if there are trades for both brokers--}}
+                                    @if($broker->id == $trade[0]->broker)
                                         <div class="col-xs-4">
                                             <div class="day_trades mt-3 {{ empty($trade[$i]->ticker) ? '' : ($broker->id == $trade[$i]->broker ? 'traded' : '' ) }}">
                                                 {{empty($trade[$i]) ? $i +1 :$trade[$i]->ticker }}
                                             </div>
                                         </div> 
-                                    @endfor
-                                    </div>
-                                @endif
-                            
-                            @endforeach
+                                    @else
+                                    {{-- using the else clause works if there are only trades in the first broker --}}
+                                    {{-- if there are trades for both brokers, both brokers print ticker and number  --}}
+                                        {{-- <div class="col-xs-4">
+                                            <div class="day_trades mt-3">
+                                                {{ $i +1 }}
+                                            </div>
+                                        </div>  --}}
+                                    @endif
+                                @endforeach
+                            @endfor
+                        </div>                            
                     @endforeach
                 {{-- single brokerage --}}
                 @else
