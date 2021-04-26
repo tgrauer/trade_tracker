@@ -149,33 +149,17 @@
                 @if($uses_more_than_one)
                     @foreach($brokers as $broker)
 
-                        <h5 class="mt-5">{{$broker->name}}</h5>
-
-                        {{-- for loop must be first to print number of day trades available even if there are no current day trades in the 3 in 5--}}                            
+                        <h5 class="mt-5">{{$broker->name}}</h5>                         
                                 
                         <div class="row d-flex justify-content-around mb-5">
-                            
-                            {{-- for loop prints 3 divs for each broker the user has. either it prints the ticker of the trade or the number of trades available before reaching the 3 in 5 limit --}}
-                            @for($i=0;$i<3;$i++)
 
-                                @foreach($day_trades as $trade)
-                                    {{-- works if there are trades for both brokers--}}
-                                    @if($broker->id == $trade[0]->broker)
-                                        <div class="col-xs-4">
-                                            <div class="day_trades mt-3 {{ empty($trade[$i]->ticker) ? '' : ($broker->id == $trade[$i]->broker ? 'traded' : '' ) }}">
-                                                {{empty($trade[$i]) ? $i +1 :$trade[$i]->ticker }}
-                                            </div>
-                                        </div> 
-                                    @else
-                                    {{-- using the else clause works if there are only trades in the first broker --}}
-                                    {{-- if there are trades for both brokers, both brokers print ticker and number  --}}
-                                        {{-- <div class="col-xs-4">
-                                            <div class="day_trades mt-3">
-                                                {{ $i +1 }}
-                                            </div>
-                                        </div>  --}}
-                                    @endif
-                                @endforeach
+                            @for($i=0;$i<3;$i++)
+                               
+                                <div class="col-xs-4">
+                                    <div class="day_trades mt-3 {{ !empty($day_trades[$broker->id]) && !empty($day_trades[$broker->id][$i]) ? 'traded' :  ' '  }}">
+                                        {{!empty($day_trades[$broker->id]) && !empty($day_trades[$broker->id][$i]) ? $day_trades[$broker->id][$i]->ticker: $i +1  }}
+                                    </div>
+                                </div> 
                             @endfor
                         </div>                            
                     @endforeach
